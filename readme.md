@@ -45,7 +45,7 @@ user-amazon-favorite
 - relation-table 2:
 user-walmart-favorite
 
-![schema image here](./truedeal.png)
+![schema image here](./truedeal2.png)
 
 ##Simple Mockup
 - search bar will include: 
