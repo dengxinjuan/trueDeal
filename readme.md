@@ -1,9 +1,11 @@
-#TrueDeal Project 
+#AppleTrueDeal Project 
 
 
 ##Goal
 
-- return product price/description from amazon and walmart.
+###To refine the data resources and narrow down the scope, I decide only use apple products as this demo project.
+
+- return apple product price/description from amazon and walmart.
 - combine amazon review,walmart review and give the product review rating.
 
 
@@ -30,16 +32,30 @@ https://rapidapi.com/logicbuilder/api/amazon-product-reviews-keywords
  https://developer.walmartlabs.com/docs?ref=apilist.fun
 
 ##Schema Design
-- user search bar (it will have brand,category(optional),product name, version(optional). Every search will have a search id.
+
 - amazon: id-a, name, price, review, description
 - walmart: id-w,name,price,review,description
 
 - user login : id-user, username,password,profile-photo
 
+
 - relation table 1:
-user-search id 
+user-amazon-favorite
 
 - relation-table 2:
-search id-- id-a --id-w
+user-walmart-favorite
 
 ![schema image here](./truedeal.png)
+
+##Simple Mockup
+- search bar will include: 
+Apple
+Product category: 
+product version:
+other(optional)
+
+
+
+![mockup image here](./mockup1.png)
+
+![mockup image here](./mockup2.png)
