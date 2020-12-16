@@ -1,9 +1,11 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,jsonify
+from flask_debugtoolbar import DebugToolbarExtension
 import requests
+
+from forms import SearchForm
 
 app= Flask(__name__)
-
-import requests
+toolbar = DebugToolbarExtension(app)
 
 
 
@@ -73,7 +75,31 @@ def request_walmart(walmartkeyword):
 def home_page():
     """ render the basic homepage"""
 
+
     return render_template('home.html')
+
+
+
+##create own api to return json
+
+@app.route("/api/search",methods=['POST'])
+def call_amazon():
+
+    received = request.json
+    form =SearchForm(data=received)
+    #brand = request.form.get("brand")
+    productname = request.form["productname"]
+    #version = request.form.get("version")
+
+    amzresult = request_amazon(productname)
+    #walresult = request_walmart(productname)
+    #targetresult =request_target(productname)
+    
+
+    return amzresult
+   
+
+        
 
 
 
