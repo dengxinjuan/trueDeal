@@ -78,9 +78,25 @@ def home_page():
 
     return render_template('home.html')
 
+@app.route('/login')
+def login_page():
+    """render login form"""
+    return render_template('login.html')
 
 
-##create own api to return json
+@app.route('/search')
+def search_result():
+    """redner search result"""
+    productname = request.args["productname"]
+    brand=request.args["brand"]
+    version=request.args["version"]
+    searchterm = brand+productname+version
+    result = request_amazon(searchterm)
+    walmartresult =request_walmart(searchterm)
+    targetresult=request_target(searchterm)
+    return render_template('search.html',result=result,walmartresult=walmartresult,targetresult=targetresult)
+
+##create own api to return json, but it doesnt work.
 
 @app.route("/api/search",methods=['POST'])
 def call_amazon():
@@ -95,8 +111,11 @@ def call_amazon():
     #walresult = request_walmart(productname)
     #targetresult =request_target(productname)
     
-
     return amzresult
+
+
+
+
    
 
         

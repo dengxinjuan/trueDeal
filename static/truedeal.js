@@ -9,9 +9,9 @@ function processForm(evt){
     url: "/api/search",
     contentType: "application/json",
     data: JSON.stringify({
-      brand: $("#brand").val(),
+      //brand: $("#brand").val(),
       productname: $("#productname").val(),
-      version: $("#version").val(),
+      //version: $("#version").val(),
     }),
     success: handleResponse // if success call handleResponse function
 
