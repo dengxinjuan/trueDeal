@@ -1,6 +1,16 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
-from wtforms.validators import InputRequired,Email,NumberRange,AnyOf
+from wtforms import StringField, IntegerField,PasswordField,BooleanField,SubmitField
+from wtforms.validators import InputRequired,Email,NumberRange,AnyOf, DataRequired
+
+## the loginForm
+
+class LoginForm(FlaskForm):
+    """user login"""
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Sign In')
+
 
 
 ### THE SEARCH FORM 
@@ -15,7 +25,4 @@ class SearchForm(FlaskForm):
     version =StringField("version")
 
 
-
-
-##class LoginForm(FlaskForm):
 

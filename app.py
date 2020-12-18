@@ -1,11 +1,16 @@
-from flask import Flask,render_template,request,jsonify
+from flask import Flask,render_template,request,jsonify,redirect,flash
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
 
-from forms import SearchForm
+from forms import SearchForm,LoginForm
 
 app= Flask(__name__)
+#CONFIG THE DEBUGTOOL
+app.debug = True
+app.config['SECRET_KEY'] = 'SOMETHINGYOUDONTKNOW'
+
 toolbar = DebugToolbarExtension(app)
+
 
 
 
@@ -78,10 +83,14 @@ def home_page():
 
     return render_template('home.html')
 
-@app.route('/login')
+
+@app.route('/login', methods=["GET","POST"])
 def login_page():
     """render login form"""
-    return render_template('login.html')
+    form = LoginForm()
+
+
+    return render_template('login.html', form=form)
 
 
 @app.route('/search')
@@ -120,7 +129,7 @@ def search_by_upc():
 
 ##create own api to return json, but it doesnt work.
 
-@app.route("/api/search",methods=['POST'])
+"""@app.route("/api/search",methods=['POST'])
 def call_amazon():
 
     received = request.json
@@ -133,7 +142,7 @@ def call_amazon():
     #walresult = request_walmart(productname)
     #targetresult =request_target(productname)
     
-    return amzresult
+    return amzresult"""
 
 
 
