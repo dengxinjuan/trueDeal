@@ -1,17 +1,29 @@
 from flask import Flask,render_template,request,jsonify,redirect,flash
 from flask_debugtoolbar import DebugToolbarExtension
+from models import db,connect_db
+
 import requests
 
 from forms import SearchForm,LoginForm
 
 app= Flask(__name__)
+
+#connect database
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres:///truedeal"
+# compress the warning
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#echo the sql command
+app.config['SQLALCHEMY_ECHO'] = True
 #CONFIG THE DEBUGTOOL
 app.debug = True
 app.config['SECRET_KEY'] = 'SOMETHINGYOUDONTKNOW'
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 toolbar = DebugToolbarExtension(app)
 
-
+#connect the app, database
+connect_db(app)
 
 
 def request_amazon(amazonkeyword):
@@ -89,8 +101,15 @@ def login_page():
     """render login form"""
     form = LoginForm()
 
+    if form.validate_on_submit():
+        username = form.username.data
+        #password = form.password.data
 
-    return render_template('login.html', form=form)
+        flash(f"welcome! Dear {username}!")
+        return redirect('/')
+
+
+    return render_template('login.html',form=form)
 
 
 @app.route('/search')
@@ -125,7 +144,7 @@ def search_by_upc():
 
 
 
-
+ 
 
 ##create own api to return json, but it doesnt work.
 

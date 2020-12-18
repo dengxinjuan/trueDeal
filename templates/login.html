@@ -1,16 +1,37 @@
 
 {%extends 'base.html'%}
 
+
 {%block content%}
+<h1>Login Form</h1>
+<form id="login_form" method="POST">
+{{form.hidden_tag()}}
+{% for field in form 
+if field.widget.input_type != 'hidden' %}
 
-{% extends "base.html" %}
+<p>
+    {{field.label}} 
+    {{field}}
+    {% for error in field.errors %}
+    {{error}}
+    {% endfor %}
+</p>
+{%endfor%}
+<button type="submit">Login!</button>
 
-{% block content %}
-{% extends "base.html" %}
+</form>
 
-{% block content %}
-    <h1>Sign In</h1>
-   {{form}}
+
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 
 {%endblock%}
 

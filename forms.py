@@ -5,13 +5,10 @@ from wtforms.validators import InputRequired,Email,NumberRange,AnyOf, DataRequir
 ## the loginForm
 
 class LoginForm(FlaskForm):
-    """user login"""
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField('Username', validators=[InputRequired()])
+    password = PasswordField('Password', validators=[InputRequired()])
     remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
-
-
+    
 
 ### THE SEARCH FORM 
 
