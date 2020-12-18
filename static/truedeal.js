@@ -2,8 +2,7 @@ window.alert("hello!")
 
 function processForm(evt){
     evt.preventDefault();
-
-    $.ajax({
+ 
 
         method: "POST",
     url: "/api/search",
@@ -33,9 +32,11 @@ function handleResponse(resp){
         $("#result").text(resp);
       }
   
-}
+} 
 
 
 
 $("#search-form").on("submit",processForm)
+
+
 

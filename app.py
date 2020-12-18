@@ -96,6 +96,28 @@ def search_result():
     targetresult=request_target(searchterm)
     return render_template('search.html',result=result,walmartresult=walmartresult,targetresult=targetresult)
 
+
+
+@app.route("/signup")
+def signup():
+    """render signup form"""
+
+    return render_template("signup.html")
+
+
+@app.route("/upc")
+def search_by_upc():
+    """search by upc"""
+
+    return render_template("upc.html")
+
+
+
+
+
+
+
+
 ##create own api to return json, but it doesnt work.
 
 @app.route("/api/search",methods=['POST'])
@@ -112,6 +134,9 @@ def call_amazon():
     #targetresult =request_target(productname)
     
     return amzresult
+
+
+
 
 
 
