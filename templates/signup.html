@@ -3,7 +3,35 @@
 
 {%block content%}
 
-this is a sign up 
+<h1>Sign-up Form</h1>
+<form id="login_form" method="POST">
+{{form.hidden_tag()}}
+{% for field in form 
+if field.widget.input_type != 'hidden' %}
+
+<p>
+    {{field.label}} 
+    {{field}}
+    {% for error in field.errors %}
+    {{error}}
+    {% endfor %}
+</p>
+{%endfor%}
+<button type="submit">Sign-up</button>
+
+</form>
+
+
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 
 
 {%endblock%}

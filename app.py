@@ -1,10 +1,10 @@
-from flask import Flask,render_template,request,jsonify,redirect,flash
+from flask import Flask,render_template,request,jsonify,redirect,flash,session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db,connect_db
 
 import requests
 
-from forms import SearchForm,LoginForm
+from forms import SearchForm,LoginForm,RegisterForm
 
 app= Flask(__name__)
 
@@ -24,6 +24,8 @@ toolbar = DebugToolbarExtension(app)
 
 #connect the app, database
 connect_db(app)
+#create table
+db.create_all()
 
 
 def request_amazon(amazonkeyword):
@@ -88,6 +90,10 @@ def request_walmart(walmartkeyword):
 
 
 
+
+
+
+
 @app.route('/')
 def home_page():
     """ render the basic homepage"""
@@ -96,20 +102,6 @@ def home_page():
     return render_template('home.html')
 
 
-@app.route('/login', methods=["GET","POST"])
-def login_page():
-    """render login form"""
-    form = LoginForm()
-
-    if form.validate_on_submit():
-        username = form.username.data
-        #password = form.password.data
-
-        flash(f"welcome! Dear {username}!")
-        return redirect('/')
-
-
-    return render_template('login.html',form=form)
 
 
 @app.route('/search')
@@ -125,12 +117,76 @@ def search_result():
     return render_template('search.html',result=result,walmartresult=walmartresult,targetresult=targetresult)
 
 
+##########User ####
 
-@app.route("/signup")
+@app.route('/login', methods=["GET","POST"])
+def login_page():
+    """render login form"""
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        user = User.authenticate(username,password)
+
+        if user:
+            session['username'] = user.username
+            flash(f"welcome! Dear {username}!")
+            return redirect("/")
+        else:
+            form.username.errors = ["Password/Username Wrong!!!"]
+            return render_template("login.html",form=form)
+        
+
+    return render_template('login.html',form=form)
+
+
+
+
+
+@app.route("/signup", methods=['GET','POST'])
 def signup():
     """render signup form"""
 
-    return render_template("signup.html")
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        profile_img = form.profile_img.data
+
+        user = User.register(username,password,profile_img)
+        db.session.add(user)
+
+        db.session.commit()
+        session['username'] = user.username
+
+        return redirect(f"/users/{username}")
+    
+    else:
+        
+        return render_template("signup.html",form=form)
+
+
+
+@app.route("/logout")
+def log_out():
+    """clear session and redirect"""
+    session.pop("username")
+    flash("you log out!")
+    return redirect("/login")
+
+
+
+@app.route("/users/<username>")
+def show_user(username):
+    user = User.query.get(username)
+    profile_img = user.profile_img
+    return render_template("user.html",user=user, profile_img=profile_img)
+
+
+
+
 
 
 @app.route("/upc")
@@ -138,8 +194,6 @@ def search_by_upc():
     """search by upc"""
 
     return render_template("upc.html")
-
-
 
 
 

@@ -9,6 +9,15 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
     remember_me = BooleanField('Remember Me')
     
+## signup form
+
+class RegisterForm(FlaskForm):
+    """form for register user"""
+    username = StringField("Username", validators=[InputRequired()])
+    password = PasswordField("Password", validators=[InputRequired()])
+    profile_img= StringField("Profile Image URL", validators=[InputRequired()])
+
+
 
 ### THE SEARCH FORM 
 
