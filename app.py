@@ -133,7 +133,7 @@ def login_page():
         if user:
             session['username'] = user.username
             flash(f"welcome! Dear {username}!")
-            return redirect("/secret")
+            return redirect(f"users/{username}")
         else:
             form.username.errors = ["Password/Username Wrong!!!"]
             return render_template("login.html",form=form)
@@ -162,7 +162,7 @@ def signup():
         db.session.commit()
         session['username'] = user.username
 
-        return redirect(f"/secret")
+        return redirect(f"/users/{username}")
     
     else:
         
@@ -177,21 +177,17 @@ def log_out():
     flash("you log out!")
     return redirect("/login")
 
-@app.route("/secret")
-def secret():
-    return render_template("secret.html")
-
 
 @app.route("/users/<username>")
 def show_user(username):
     user = User.query.get(username)
     profile_img = user.profile_img
-    return render_template("user.html",user=user, profile_img=profile_img)
+    return render_template("username.html",user=user, profile_img=profile_img)
 
 
 
 
-
+### seach by upc page
 
 @app.route("/upc")
 def search_by_upc():
@@ -201,8 +197,6 @@ def search_by_upc():
 
 
 
-
- 
 
 ##create own api to return json, but it doesnt work.
 

@@ -35,19 +35,18 @@ class User(db.Model):
     
      # start_register
     @classmethod
-    def register(cls, username,pwd,profile_img):
+    def register(cls,username,pwd,profile_img):
         """Register user w/hashed password & return user."""
 
         hashed = bcrypt.generate_password_hash(pwd)
         hashed_utf8 = hashed.decode("utf8")
-
-        user = cls(
+        
+        return cls(
             username = username,
             password = hashed_utf8,
             profile_img = profile_img
         )
 
-        return user
     # end_register
 
     # start_authenticate
@@ -66,4 +65,5 @@ class User(db.Model):
         else:
             return False
     # end_authenticate  
+    
 
