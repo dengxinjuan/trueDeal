@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,jsonify,redirect,flash,session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db,connect_db
+from models import db,connect_db,User
 
 import requests
 
@@ -44,6 +44,7 @@ def request_amazon(amazonkeyword):
     response = requests.request("GET", url, headers=headers, params=querystring)
     result = response.text
     return result
+
 
 
 
@@ -132,7 +133,7 @@ def login_page():
         if user:
             session['username'] = user.username
             flash(f"welcome! Dear {username}!")
-            return redirect("/")
+            return redirect("/secret")
         else:
             form.username.errors = ["Password/Username Wrong!!!"]
             return render_template("login.html",form=form)
@@ -161,7 +162,7 @@ def signup():
         db.session.commit()
         session['username'] = user.username
 
-        return redirect(f"/users/{username}")
+        return redirect(f"/secret")
     
     else:
         
@@ -176,6 +177,9 @@ def log_out():
     flash("you log out!")
     return redirect("/login")
 
+@app.route("/secret")
+def secret():
+    return render_template("secret.html")
 
 
 @app.route("/users/<username>")

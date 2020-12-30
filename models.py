@@ -1,8 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
-bcrypt = Bcrypt()
+
 db=SQLAlchemy() #DATABASE SETTING
+bcrypt = Bcrypt()
+
 
 def connect_db(app):
     db.app= app
@@ -17,22 +19,23 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, 
-                         primary_key=True)
+                         primary_key=True,
+                         autoincrement=True)
 
-    username = db.Column(db.String(20),
+    username = db.Column(db.Text,
     nullable=False, unique=True)
 
-    password = db.Column(db.String(50),
+    password = db.Column(db.Text,
                          nullable=False)
 
-    profile_img = db.Column(db.String(30),
+    profile_img = db.Column(db.Text,
                          nullable=False)
 
-    #feedback = db.relationship("Feedback",backref="user",cascade="all,delete")
+
     
      # start_register
     @classmethod
-    def register(cls, username, pwd,profile_img):
+    def register(cls, username,pwd,profile_img):
         """Register user w/hashed password & return user."""
 
         hashed = bcrypt.generate_password_hash(pwd)
