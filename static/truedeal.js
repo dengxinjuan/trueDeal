@@ -1,4 +1,4 @@
-window.alert("hello!")
+/*window.alert("hello!")
 
 /*function processForm(evt){
     evt.preventDefault();

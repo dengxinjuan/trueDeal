@@ -192,6 +192,14 @@ def show_user(username):
 
 
 
+##error handle
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """customize error page"""
+    return render_template('404.html'),404
+    
+
 
 ### seach by upc page
 

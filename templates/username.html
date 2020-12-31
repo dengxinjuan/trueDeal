@@ -1,6 +1,10 @@
 
 {%extends 'base.html'%}
+
 {%block content%}
+
+
+
 {%if 'username' in session %}
 
 Welcome! {{user}}
@@ -11,11 +15,8 @@ This will show user's favorites here
 
 {%endif%}
 
-
-{%if 'username' not in session%}
 You must log in to see it. 
 
-{%endif%}
 
 
 
