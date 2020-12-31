@@ -180,9 +180,15 @@ def log_out():
 
 @app.route("/users/<username>")
 def show_user(username):
-    user = User.query.get(username)
-    profile_img = user.profile_img
-    return render_template("username.html",user=user, profile_img=profile_img)
+
+    if "username" not in session:
+        flash("You must be logged in to view!")
+        return redirect("/")
+    
+    else:
+        user = User.query.get(username)
+        profile_img = user.profile_img
+        return render_template("username.html",user=user, profile_img=profile_img)
 
 
 
