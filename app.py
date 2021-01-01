@@ -105,6 +105,7 @@ def home_page():
 
 
 
+
 @app.route('/search')
 def search_result():
     """redner search result"""
@@ -131,7 +132,7 @@ def login_page():
         user = User.authenticate(username,password)
 
         if user:
-            session['username'] = user.username
+            session["username"] = user.username #keep logged in
             flash(f"welcome! Dear {username}!")
             return redirect(f"users/{username}")
         else:
@@ -181,15 +182,20 @@ def log_out():
 @app.route("/users/<username>")
 def show_user(username):
 
-    if "username" not in session:
+    if 'username' not in session or username != session['username']:
         flash("You must be logged in to view!")
         return redirect("/")
     
     else:
-        user = User.query.get(username)
+        
+        user = User.query.filter_by(username=username).first_or_404()
         profile_img = user.profile_img
         return render_template("username.html",user=user, profile_img=profile_img)
 
+
+## user-edit userprofile
+## user-delete user
+## user-add favorite
 
 
 ##error handle
@@ -208,6 +214,7 @@ def search_by_upc():
     """search by upc"""
 
     return render_template("upc.html")
+
 
 
 
