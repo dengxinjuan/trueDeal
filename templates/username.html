@@ -7,19 +7,28 @@
 
 {%if 'username' in session %}
 
-Welcome! {{user}}
 
-{{profile_img}}
+
+
+<table>
+    <tr valign="top">
+        <td><img src="{{profile_img}}" alt="user photo here"></td>
+        <td><h1>Awesome! You are {{ user.username }}!</h1></td>
+    </tr>
+</table>
+<hr>
 
 This will show user's favorites here
 
 {%endif%}
 
+{%if 'username' not in session%}
+
 You must log in to see it. 
 
+{%endif%}
 
-
-
+<a href="/logout">Log Out</a>
 
 
 {%endblock%}
