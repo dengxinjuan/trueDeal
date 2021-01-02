@@ -19,16 +19,15 @@ class RegisterForm(FlaskForm):
 
 
 
-### THE SEARCH FORM 
+### THE UPC SEARCH FORM 
 
-class SearchForm(FlaskForm):
+class UpcSearchForm(FlaskForm):
     """using the validator to request input"""
     class Meta:
         csrf = False
     
-    brand = StringField("Brand",validators=[InputRequired()])
-    productname = StringField("ProductName",validators=[InputRequired()])
-    version =StringField("version")
+    UPC = StringField("UPC",validators=[InputRequired()])
+ 
 
 
 

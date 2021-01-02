@@ -4,7 +4,7 @@ from models import db,connect_db,User
 
 import requests
 
-from forms import SearchForm,LoginForm,RegisterForm
+from forms import LoginForm,RegisterForm,UpcSearchForm
 
 app= Flask(__name__)
 
@@ -27,7 +27,7 @@ connect_db(app)
 #create table
 db.create_all()
 
-
+##function to search 
 def request_amazon(amazonkeyword):
 
     """this will return json for the product keyword"""
@@ -43,6 +43,7 @@ def request_amazon(amazonkeyword):
 
     response = requests.request("GET", url, headers=headers, params=querystring)
     result = response.text
+    jsonify(result)
     return result
 
 
@@ -88,9 +89,7 @@ def request_walmart(walmartkeyword):
     return result
     
 
-
-
-
+##########
 
 
 
@@ -114,9 +113,10 @@ def search_result():
     version=request.args["version"]
     searchterm = brand+productname+version
     result = request_amazon(searchterm)
-    walmartresult =request_walmart(searchterm)
-    targetresult=request_target(searchterm)
-    return render_template('search.html',result=result,walmartresult=walmartresult,targetresult=targetresult)
+  
+    #walmartresult =request_walmart(searchterm)
+    #targetresult=request_target(searchterm)
+    return render_template('search.html',result=result)
 
 
 ##########User ####
@@ -209,11 +209,21 @@ def page_not_found(e):
 
 ### seach by upc page
 
-@app.route("/upc")
+
+
+
+
+
+@app.route("/upc",methods=['GET','POST'])
 def search_by_upc():
     """search by upc"""
-
-    return render_template("upc.html")
+    form = UpcSearchForm()
+    if form.validate_on_submit():
+        upc_search_term = form.UPC.data
+        result = request_amazon(upc_search_term)
+        return render_template('upc.html',form=form,result=result)
+    
+    return render_template("upc.html",form=form)
 
 
 

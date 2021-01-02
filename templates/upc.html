@@ -2,8 +2,25 @@
 
 {%block content%}
 
+<h1>Search-By-UPC</h1>
+<form id="Search-By-UPC" method="POST">
+{{form.hidden_tag()}}
+{% for field in form 
+if field.widget.input_type != 'hidden' %}
 
-search by UPC
+<p>
+    {{field.label}} 
+    {{field}}
+    {% for error in field.errors %}
+    {{error}}
+    {% endfor %}
+</p>
+{%endfor%}
+<button type="submit">Search-By-UPC</button>
+
+</form>
+
+{{result}}
 
 {%endblock%}
 
