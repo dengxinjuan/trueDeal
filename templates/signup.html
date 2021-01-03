@@ -2,7 +2,7 @@
 {%extends 'base.html'%}
 
 {%block content%}
-
+<div class="container">
 <h1>Sign-up Form</h1>
 <form id="login_form" method="POST">
 {{form.hidden_tag()}}
@@ -20,6 +20,7 @@ if field.widget.input_type != 'hidden' %}
 <button type="submit">Sign-up</button>
 
 </form>
+</div>
 
 
 

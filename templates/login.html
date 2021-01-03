@@ -3,6 +3,7 @@
 
 
 {%block content%}
+<div class="container">
 <h1>Login Form</h1>
 <form id="login_form" method="POST">
 {{form.hidden_tag()}}
@@ -20,7 +21,7 @@ if field.widget.input_type != 'hidden' %}
 <button type="submit">Login!</button>
 
 </form>
-
+</div>
 
 
 {%endblock%}

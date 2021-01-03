@@ -4,15 +4,36 @@
 {%block content%}
 
  <!-----I want to use form here so next step will start use forms.py-->
-    <div> 
+    <div class="container"> 
+        <h1>Search by Keyword</h1>
+        <hr>
+    
     <form  action="/search" id="search-form">
-        <div>Brand: <input id="brand"type="text" name="brand"> <b id="brand-err"></b> </div>
-        <div>Product Name:<input type="text id="productname" name="productname"> <b id="productname-err"></b> </div>
-        <div>Product version <input id="version" name="version"> <b id="version-err"></b> </div>
-        <button>Search!</button>
+        <div class="row">
+            <div class="col-3">Brand:</div>
+            <div class="col-3">Product Name:</div>
+            <div class="col-3">Product Version:</div>
+
+        </div>
+
+
+
+
+        <div class="row">
+        <div class="col-3"><input id="brand"type="text" name="brand"> <b id="brand-err"></b> </div>
+        <div class="col-3"><input type="text id="productname" name="productname" required> <b id="productname-err"></b> </div>
+        <div class="col-3"><input id="version" name="version"> <b id="version-err"></b> </div>
+        </div>
+
+        <br>
+
+        <div>
+            <button  class="col-3 btn-danger">Search!</button>
+        </div>
 
     </form>
     </div>
+
 
     <div id="result">
 

@@ -4,7 +4,7 @@ from models import db,connect_db,User
 
 import requests
 
-from forms import LoginForm,RegisterForm,UpcSearchForm
+from forms import LoginForm,RegisterForm,UpcSearchForm,SearchForm
 
 app= Flask(__name__)
 
@@ -43,7 +43,7 @@ def request_amazon(amazonkeyword):
 
     response = requests.request("GET", url, headers=headers, params=querystring)
     result = response.text
-    jsonify(result)
+   
     return result
 
 
@@ -113,6 +113,7 @@ def search_result():
     version=request.args["version"]
     searchterm = brand+productname+version
     result = request_amazon(searchterm)
+    
   
     #walmartresult =request_walmart(searchterm)
     #targetresult=request_target(searchterm)
