@@ -3,11 +3,42 @@
 
 {%block content%}
 
-<div >
-<p style="color: orange; font-size:larger">{{result}}</p>
-<p style="color:blue">{{walmartresult}}</p>
+
+<div style="color: orange; font-size:larger" class="container card-deck" >
+ 
+    <!-- For loop logic of jinja template -->
+    {%for i in range(0, len)%} 
+    
+      <div class="card" style="width: 18rem; display: inline-block;"> 
+        <img class="card-img-top" src={{result[i]['thumbnail']}}> 
+        <div class="card-block"> 
+            <h4 class="card-title">{{result[i]['title']}}</h4> 
+            <p class="card-text"> 
+                <li>Price: {{result[i]['price']['current_price']}} {{result[i]['price']['currency']}}
+                </li>
+                <li>Asin: {{result[i]['asin']}}</li>
+            </p> 
+              
+          
+                <div class="btn">
+                    <a href="{{result[i]['url']}}" target="_blank">Go!</a>
+                </div>
+        </div> 
+    </div> 
+
+
+
+
+
+
+
+
+    {%endfor%} 
+      
 </div>
-{{result.products}}
+
+<p style="color:blue">{{walmartresult}}</p>
+
 
 {%endblock%}
 

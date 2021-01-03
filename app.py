@@ -2,9 +2,10 @@ from flask import Flask,render_template,request,jsonify,redirect,flash,session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db,connect_db,User
 
+import json
 import requests
 
-from forms import LoginForm,RegisterForm,UpcSearchForm,SearchForm
+from forms import LoginForm,RegisterForm,UpcSearchForm
 
 app= Flask(__name__)
 
@@ -42,9 +43,10 @@ def request_amazon(amazonkeyword):
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
-    result = response.text
+    result = json.loads(response.text)
    
-    return result
+    return result['products']
+
 
 
 
@@ -117,7 +119,7 @@ def search_result():
   
     #walmartresult =request_walmart(searchterm)
     #targetresult=request_target(searchterm)
-    return render_template('search.html',result=result)
+    return render_template('search.html',result=result, len=len(result))
 
 
 ##########User ####
