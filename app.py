@@ -212,12 +212,10 @@ def page_not_found(e):
 
 ### seach by asin page
 
-
-def search_by_asin(asin):
-    """get product description by asin"""
+def product_by_asin(asin):
+    """return product details by asin"""
 
     url = "https://amazon-product-reviews-keywords.p.rapidapi.com/product/details"
-    
     querystring = {f"asin":{asin},"country":"US"}
     
     headers = {
@@ -229,7 +227,7 @@ def search_by_asin(asin):
 
     result = json.loads(response.text)
     
-    return result
+    return result['product']
 
 
 
@@ -239,7 +237,7 @@ def search_by_asin():
     form = AsinSearchForm()
     if form.validate_on_submit():
         asin_search_term = form.ASIN.data
-        result = search_by_asin(asin_search_term)
+        result = product_by_asin(asin_search_term)
         return render_template('asin.html',form=form,result=result)
     
     return render_template("asin.html",form=form)
