@@ -3,9 +3,11 @@
 {%block content%}
 
 <div class="container">
-<h1>Search-By-UPC</h1>
+<h1>Search-By-ASIN</h1>
 
-<form id="Search-By-UPC" method="POST" >
+<hr>
+
+<form id="Search-By-ASIN" method="POST" >
 {{form.hidden_tag()}}
 {% for field in form 
 if field.widget.input_type != 'hidden' %}
@@ -18,12 +20,19 @@ if field.widget.input_type != 'hidden' %}
     {% endfor %}
 </p>
 {%endfor%}
-<button type="submit" class="btn-danger btn-large">Search-By-UPC</button>
+<button type="submit" class="btn-danger btn-large">Search-By-ASIN</button>
 
 </form>
 </div>
 
-{{result}}
+<div>
+ 
+    {{result}}
+
+
+</div>
+
+
 
 {%endblock%}
 

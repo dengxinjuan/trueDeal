@@ -5,7 +5,7 @@ from models import db,connect_db,User
 import json
 import requests
 
-from forms import LoginForm,RegisterForm,UpcSearchForm
+from forms import LoginForm,RegisterForm,AsinSearchForm
 
 app= Flask(__name__)
 
@@ -210,44 +210,43 @@ def page_not_found(e):
     
 
 
-### seach by upc page
+### seach by asin page
+
+
+def search_by_asin(asin):
+    """get product description by asin"""
+
+    url = "https://amazon-product-reviews-keywords.p.rapidapi.com/product/details"
+    
+    querystring = {f"asin":{asin},"country":"US"}
+    
+    headers = {
+    'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
+    'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
+    }
+    
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    result = json.loads(response.text)
+    
+    return result
 
 
 
-
-
-
-@app.route("/upc",methods=['GET','POST'])
-def search_by_upc():
-    """search by upc"""
-    form = UpcSearchForm()
+@app.route("/asin",methods=['GET','POST'])
+def search_by_asin():
+    """search by asin"""
+    form = AsinSearchForm()
     if form.validate_on_submit():
-        upc_search_term = form.UPC.data
-        result = request_amazon(upc_search_term)
-        return render_template('upc.html',form=form,result=result)
+        asin_search_term = form.ASIN.data
+        result = search_by_asin(asin_search_term)
+        return render_template('asin.html',form=form,result=result)
     
-    return render_template("upc.html",form=form)
+    return render_template("asin.html",form=form)
 
 
 
 
-
-##create own api to return json, but it doesnt work.
-
-"""@app.route("/api/search",methods=['POST'])
-def call_amazon():
-
-    received = request.json
-    form =SearchForm(data=received)
-    #brand = request.form.get("brand")
-    productname = request.form["productname"]
-    #version = request.form.get("version")
-
-    amzresult = request_amazon(productname)
-    #walresult = request_walmart(productname)
-    #targetresult =request_target(productname)
-    
-    return amzresult"""
 
 
 

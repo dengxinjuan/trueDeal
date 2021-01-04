@@ -10,14 +10,14 @@
     {%for i in range(0, len)%} 
     
       <div class="card" style="width: 18rem; display: inline-block;"> 
-        <img class="card-img-top" src={{result[i]['thumbnail']}}> 
+        <img class="card-img-top" src="{{result[i]['thumbnail']}}" > 
         <div class="card-block"> 
             <h4 class="card-title">{{result[i]['title']}}</h4> 
-            <p class="card-text"> 
-                <li>Price: {{result[i]['price']['current_price']}} {{result[i]['price']['currency']}}
-                </li>
-                <li>Asin: {{result[i]['asin']}}</li>
-            </p> 
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Price: {{result[i]['price']['current_price']}} {{result[i]['price']['currency']}}</li>
+                <li class="list-group-item">Asin: {{result[i]['asin']}}</li>
+               
+              </ul>
               
           
                 <div class="btn">
@@ -25,12 +25,6 @@
                 </div>
         </div> 
     </div> 
-
-
-
-
-
-
 
 
     {%endfor%} 
