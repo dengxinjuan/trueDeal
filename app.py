@@ -5,7 +5,7 @@ from models import db,connect_db,User
 import json
 import requests
 
-from forms import LoginForm,RegisterForm,AsinSearchForm
+from forms import LoginForm,RegisterForm,AsinSearchForm, ReviewsByAsinForm
 
 app= Flask(__name__)
 
@@ -230,6 +230,9 @@ def product_by_asin(asin):
     return result['product']
 
 
+    
+
+
 
 @app.route("/asin",methods=['GET','POST'])
 def search_by_asin():
@@ -248,7 +251,39 @@ def search_by_asin():
 
 
 
+### search reviews by asin
 
+def search_reviews(asin):
+    """get reviews by asin"""
+
+    url = "https://amazon-product-reviews-keywords.p.rapidapi.com/product/reviews"
+    
+    querystring = {f"asin":{asin},"country":"US","variants":"1","top":"0"}
+    
+    headers = {
+    'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
+    'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
+    }
+    
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    result= json.loads(response.text)
+
+    return result['reviews']
+
+
+
+@app.route("/reviews", methods=['GET','POST'])
+def reviews_by_asin():
+    """return reviews by asin"""
+    form = ReviewsByAsinForm()
+
+    if form.validate_on_submit():
+        review_search_term = form.reviewsByAsin.data
+        result = search_reviews(review_search_term)
+        return render_template('reviews.html',form=form, result=result)
+
+    return render_template('reviews.html',form=form)
 
 
 

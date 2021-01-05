@@ -25,14 +25,21 @@ if field.widget.input_type != 'hidden' %}
 </form>
 </div>
 
-<div>
+<div class="container">
+{%if result %}
+<h1>{{result['title']}}</h1>
+<p>{{result['description']}}</p>
+<img src="{{result['main_image']}}" alt="product image here">
+<ul>
+    {%for item in result['feature_bullets']%}
+    <li>{{item}}</li>
+   
+    {%endfor%}
+</ul>
+<a href="{{result['url']}}" class="btn-danger">Go!</a>
 
-    {{result}}
-
-
+{%endif%}
 </div>
-
-
 
 {%endblock%}
 

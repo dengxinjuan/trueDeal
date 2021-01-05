@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="container">
+<h1>Reviews-By-Asin</h1>
+<hr>
+
+<form id="reviews_by_asin" method="POST" >
+    {{form.hidden_tag()}}
+    {% for field in form 
+    if field.widget.input_type != 'hidden' %}
+    
+    <p>
+        {{field.label}} 
+        {{field}}
+        {% for error in field.errors %}
+        {{error}}
+        {% endfor %}
+    </p>
+    {%endfor%}
+    <button type="submit" class="btn-danger btn-large">Reviews-By-ASIN</button>
+    
+    </form>
+    </div>
+
+
+
+    <div class="conatiner">
+        {%if result%}
+        {%for item in result%}
+    
+        <h1>{{item.title}}</h1>
+        <p>{{item.review}}</p>
+        <p>{{item.rating}}</p>
+        <p>{{item.name}}</p>
+        <p>{{item['date']['date']}}</p>
+    
+        {%endfor%}
+      
+    </div>
+    {%endif%}
+
+
+{%endblock%}

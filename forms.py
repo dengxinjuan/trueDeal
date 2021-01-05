@@ -19,7 +19,7 @@ class RegisterForm(FlaskForm):
 
 
 
-### THE UPC SEARCH FORM 
+### THE Asin SEARCH FORM 
 
 class AsinSearchForm(FlaskForm):
     """using the validator to request input"""
@@ -29,5 +29,14 @@ class AsinSearchForm(FlaskForm):
     ASIN = StringField("ASIN",validators=[InputRequired()])
  
 
+### The reviews by asin form
+
+class ReviewsByAsinForm(FlaskForm):
+    """using the validator, return reviews by asin"""
+    
+    class Meta:
+        csrf = False
+    
+    reviewsByAsin = StringField("Reviews by Asin",validators=[InputRequired()])
 
 
