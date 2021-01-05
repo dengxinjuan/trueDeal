@@ -1,11 +1,11 @@
 from flask import Flask,render_template,request,jsonify,redirect,flash,session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db,connect_db,User
+from models import db,connect_db,User,ShoppingList
 
 import json
 import requests
 
-from forms import LoginForm,RegisterForm,AsinSearchForm, ReviewsByAsinForm
+from forms import LoginForm,RegisterForm,AsinSearchForm, ReviewsByAsinForm, ShoppingListForm
 
 app= Flask(__name__)
 
@@ -194,7 +194,8 @@ def show_user(username):
         
         user = User.query.filter_by(username=username).first_or_404()
         profile_img = user.profile_img
-        return render_template("username.html",user=user, profile_img=profile_img)
+        lists = ShoppingList.query.all()
+        return render_template("username.html",user=user, profile_img=profile_img, lists=lists)
 
 ## user-delete user
 @app.route("/users/<username>/delete", methods=['POST'])
@@ -303,11 +304,56 @@ def reviews_by_asin():
 
 
 #### user shopping list 
-
-
-
-
+@app.route("/users/<username>/shoppinglist/add", methods=["GET","POST"])
+def new_shopping_list(username):
+    """show add-shopping-list-form and process it"""
+    
+    if 'username' not in session or username != session['username']:
         
+        flash("You must be logged in to view!")
+        return redirect("/")
+
+    form = ShoppingListForm()
+
+    if form.validate_on_submit():
+        content = form.content.data
+        shoppinglist = ShoppingList(
+            content=content,
+            done = False,
+            username = username
+        )
+        db.session.add(shoppinglist)
+        db.session.commit()
+
+        return redirect(f"/users/{username}")
+
+    else:
+        lists = ShoppingList.query.all()
+        return render_template("shopping_list.html",form=form,lists=lists)
+
+
+@app.route("/shoppinglist/<int:shoppinglist_id>/delete", methods=["POST"])
+def delete_shopping_list(shoppinglist_id):
+    """delete shoppinglist by id """
+    shoppinglist = ShoppingList.query.get(shoppinglist_id)
+    db.session.delete(shoppinglist)
+    db.session.commit()
+
+    return redirect(f"/users/{shoppinglist.username}")
+        
+
+@app.route("/shoppinglist/<int:shoppinglist_id>/done")
+def done_shoppinglist(shoppinglist_id):
+    """toggle shoppinglist done status"""
+    shoppinglist = ShoppingList.query.get(shoppinglist_id)
+    if not shoppinglist:
+        return redirect("/")
+    if shoppinglist.done:
+        shoppinglist.done = False
+    else: 
+        shoppinglist.done = True
+    db.session.commit()
+    return redirect(f"/users/{shoppinglist.username}")
 
 
 

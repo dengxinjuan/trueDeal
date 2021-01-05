@@ -18,7 +18,30 @@
 </table>
 <hr>
 
-This will show user's favorites here
+<div>
+
+ <h1>Your shopping lists:</h1>
+  <ol>
+    {% for list in lists %}
+        <li>
+            {% if list.done %} <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{% endif %}
+  
+
+        </li>
+    {% endfor %}
+</ol>
+
+
+
+
+</div>
+
+
+
+
+
+
+
 
 {%endif%}
 

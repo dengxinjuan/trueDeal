@@ -31,6 +31,8 @@ class User(db.Model):
     profile_img = db.Column(db.Text,
                          nullable=False)
 
+    shoppinglist = db.relationship("ShoppingList",backref="user",cascade="all,delete")
+
 
     
      # start_register
@@ -68,3 +70,17 @@ class User(db.Model):
     
 
 
+## shopping lists model
+class ShoppingList(db.Model):
+    """define the shopping list model"""
+
+    __tablename__ = "shoppinglists"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    content = db.Column(db.Text)
+    done = db.Column(db.Boolean, default =False)
+    username = db.Column(db.Text, db.ForeignKey("users.username"), nullable= False)
+
+
+
+ 

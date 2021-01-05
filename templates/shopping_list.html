@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="container">
+<form id="shoppinglist_form" method="POST">
+    {{form.hidden_tag()}}
+    {% for field in form 
+    if field.widget.input_type != 'hidden' %}
+    
+    <p>
+        {{field.label}} 
+        {{field}}
+        {% for error in field.errors %}
+        {{error}}
+        {% endfor %}
+    </p>
+    {%endfor%}
+    <button type="submit">Create Shopping List!</button>
+
+</form>
+
+<hr>
+
+
+<h2>Your Shopping list here:</h2>
+
+<ol>
+    {% for list in lists %}
+        <li>
+            {% if list.done %} <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{% endif %}
+            <a class="btn btn-success" href="/shoppinglist/{{list.id}}/done">Done</a>
+            <form>
+                <button class="btn btn-danger" formaction="/shoppinglist/{{list.id}}/delete" formmethod="POST">Delete</button>
+            </form>
+
+        </li>
+    {% endfor %}
+</ol>
+
+
+
+
+
+</div>
+
+{%endblock%}

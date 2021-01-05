@@ -40,3 +40,9 @@ class ReviewsByAsinForm(FlaskForm):
     reviewsByAsin = StringField("Reviews by Asin",validators=[InputRequired()])
 
 
+class ShoppingListForm(FlaskForm):
+    """create shopping list form"""
+    class Meta:
+        csrf = False
+    
+    content = StringField("Add Shopping List", validators=[InputRequired()])
