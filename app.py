@@ -194,7 +194,7 @@ def show_user(username):
         
         user = User.query.filter_by(username=username).first_or_404()
         profile_img = user.profile_img
-        lists = ShoppingList.query.all()
+        lists = ShoppingList.query.filter_by(username = username)
         return render_template("username.html",user=user, profile_img=profile_img, lists=lists)
 
 ## user-delete user
@@ -328,7 +328,7 @@ def new_shopping_list(username):
         return redirect(f"/users/{username}")
 
     else:
-        lists = ShoppingList.query.all()
+        lists = ShoppingList.query.filter_by(username = username)
         return render_template("shopping_list.html",form=form,lists=lists)
 
 
