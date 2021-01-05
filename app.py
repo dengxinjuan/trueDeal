@@ -184,6 +184,7 @@ def log_out():
 
 @app.route("/users/<username>")
 def show_user(username):
+    """user profile page"""
 
     if 'username' not in session or username != session['username']:
         flash("You must be logged in to view!")
@@ -195,9 +196,23 @@ def show_user(username):
         profile_img = user.profile_img
         return render_template("username.html",user=user, profile_img=profile_img)
 
+## user-delete user
+@app.route("/users/<username>/delete", methods=['POST'])
+def delete_user(username):
+    """delete user"""
+    if 'username' not in session or username != session['username']:
+        flash("You must be logged in to view!")
+        return redirect("/")
+    
+    else: 
+        user = User.query.filter_by(username=username).first_or_404()
+        db.session.delete(user)
+        db.session.commit()
+        session.pop('username')
+
+        return redirect("/login")
 
 ## user-edit userprofile
-## user-delete user
 ## user-add favorite
 
 
@@ -287,7 +302,10 @@ def reviews_by_asin():
 
 
 
-   
+#### user shopping list 
+
+
+
 
         
 
