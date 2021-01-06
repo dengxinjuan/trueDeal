@@ -12,7 +12,7 @@
 
 <table>
     <tr valign="top">
-        <td><img src="{{profile_img}}" alt="user photo here"></td>
+        <td><img src="{{profile_img}}" alt="user photo here" style="border-radius:50%"></td>
         <td><h1>Awesome! You are {{ user.username }}!</h1></td>
     </tr>
 </table>
@@ -51,17 +51,21 @@ You must log in to see it.
 
 {%endif%}
 
-<a href="/logout">Log Out</a>
+<div class="container" style="display: inline-block;">
 
-<div class="container">
+<a  class="btn btn-success btn-sm col-2" href="/logout">Log Out</a>
+
+
+
 <form>
-    <button class="btn btn-danger btn-sm"
+    <button class="btn btn-danger btn-sm col-2"
             formaction="/users/{{ user.username }}/delete"
             formmethod="POST">
       Delete User
     </button>
 
   </form>
+ 
 </div>
 
 {%endblock%}
