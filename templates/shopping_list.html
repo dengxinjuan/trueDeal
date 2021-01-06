@@ -24,6 +24,7 @@
 
 <h2>Your Shopping list here:</h2>
 
+<!----- OLD LIST 
 <ol>
     {% for list in lists %}
         <li>
@@ -35,7 +36,38 @@
 
         </li>
     {% endfor %}
-</ol>
+</ol>-->
+
+
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Content</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        {% for list in lists %}
+      <tr>
+       
+        <th scope="row">{{list.id}}</th>
+        <td>{% if list.done %} <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{% endif %}</td>
+        <td>   <a class="btn btn-success" href="/shoppinglist/{{list.id}}/done">Done</a></td>
+        <td>  <form>
+            <button class="btn btn-danger" formaction="/shoppinglist/{{list.id}}/delete" formmethod="POST">Delete</button>
+        </form></td>
+   
+      </tr>
+   
+      {%endfor%}
+     
+    </tbody>
+  </table>
+
 
 
 
