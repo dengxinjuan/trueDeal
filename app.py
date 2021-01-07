@@ -29,13 +29,13 @@ connect_db(app)
 db.create_all()
 
 ##function to search 
-def request_amazon(amazonkeyword):
+def request_amazon(amazonkeyword,country):
 
     """this will return json for the product keyword"""
 
     url = "https://amazon-product-reviews-keywords.p.rapidapi.com/product/search"
 
-    querystring = {f"keyword": {amazonkeyword},"country":"US","category":"aps"}
+    querystring = {f"keyword": {amazonkeyword},"country":{country},"category":"aps"}
 
     headers = {
     'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
@@ -113,8 +113,9 @@ def search_result():
     productname = request.args["productname"]
     brand=request.args["brand"]
     version=request.args["version"]
+    country = request.args["country"]
     searchterm = brand+productname+version
-    result = request_amazon(searchterm)
+    result = request_amazon(searchterm,country)
     
   
     #walmartresult =request_walmart(searchterm)
@@ -228,11 +229,11 @@ def page_not_found(e):
 
 ### seach by asin page
 
-def product_by_asin(asin):
+def product_by_asin(asin,country):
     """return product details by asin"""
 
     url = "https://amazon-product-reviews-keywords.p.rapidapi.com/product/details"
-    querystring = {f"asin":{asin},"country":"US"}
+    querystring = {f"asin":{asin},"country":{country}}
     
     headers = {
     'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
@@ -256,7 +257,8 @@ def search_by_asin():
     form = AsinSearchForm()
     if form.validate_on_submit():
         asin_search_term = form.ASIN.data
-        result = product_by_asin(asin_search_term)
+        country = form.country.data
+        result = product_by_asin(asin_search_term,country)
         return render_template('asin.html',form=form,result=result)
     
     return render_template("asin.html",form=form)
@@ -269,12 +271,12 @@ def search_by_asin():
 
 ### search reviews by asin
 
-def search_reviews(asin):
+def search_reviews(asin,country):
     """get reviews by asin"""
 
     url = "https://amazon-product-reviews-keywords.p.rapidapi.com/product/reviews"
     
-    querystring = {f"asin":{asin},"country":"US","variants":"1","top":"0"}
+    querystring = {f"asin":{asin},"country":{country},"variants":"1","top":"0"}
     
     headers = {
     'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
@@ -296,7 +298,8 @@ def reviews_by_asin():
 
     if form.validate_on_submit():
         review_search_term = form.reviewsByAsin.data
-        result = search_reviews(review_search_term)
+        country = form.country.data
+        result = search_reviews(review_search_term,country)
         return render_template('reviews.html',form=form, result=result)
 
     return render_template('reviews.html',form=form)

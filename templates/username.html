@@ -7,39 +7,56 @@
 
 {%if 'username' in session %}
 
-
-
-
+<div class="container">
+<div class="row">
+<div class="col-6">
 <table>
     <tr valign="top">
         <td><img src="{{profile_img}}" alt="user photo here" style="border-radius:50%"></td>
         <td><h1>Awesome! You are {{ user.username }}!</h1></td>
     </tr>
 </table>
+</div>
+
+<div class="col-6">
+
+    <a  class="btn btn-success btn-sm col-3" href="/logout">Log Out</a>
+    
+    
+    
+    <form>
+        <button class="btn btn-danger btn-sm col-3"
+                formaction="/users/{{ user.username }}/delete"
+                formmethod="POST">
+          Delete User
+        </button>
+    
+      </form>
+     
+    </div>
+</div>
 <hr>
 
 <div>
 
- <h1>Your shopping lists:</h1>
-  <ol>
+
+
+<div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+        Your shopping lists:
+    </button>
     {% for list in lists %}
-        <li>
-            {% if list.done %} <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{% endif %}
+    <button type="button" class="list-group-item list-group-item-action">
+        {% if list.done %} <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{% endif %}
   
-
-        </li>
+    </button>
     {% endfor %}
-</ol>
-
-
+  </div>
 
 
 </div>
 
-
-
-
-
+</div>
 
 
 
@@ -51,21 +68,7 @@ You must log in to see it.
 
 {%endif%}
 
-<div class="container" style="display: inline-block;">
-
-<a  class="btn btn-success btn-sm col-2" href="/logout">Log Out</a>
 
 
-
-<form>
-    <button class="btn btn-danger btn-sm col-2"
-            formaction="/users/{{ user.username }}/delete"
-            formmethod="POST">
-      Delete User
-    </button>
-
-  </form>
- 
-</div>
 
 {%endblock%}

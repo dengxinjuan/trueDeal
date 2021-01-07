@@ -13,6 +13,7 @@
             <div class="col-3">Brand:</div>
             <div class="col-3">Product Name:(required)</div>
             <div class="col-3">Product Version:</div>
+            <div class="col-3"><label for="country">Country:</label></div>
 
         </div>
 
@@ -20,15 +21,45 @@
 
 
         <div class="row">
-        <div class="col-3"><input id="brand"type="text" name="brand"> <b id="brand-err"></b> </div>
-        <div class="col-3"><input type="text id="productname" name="productname" required> <b id="productname-err"></b> </div>
-        <div class="col-3"><input id="version" name="version"> <b id="version-err"></b> </div>
+        <div class="col-3"><input id="brand"type="text" name="brand">  </div>
+        <div class="col-3"><input type="text id="productname" name="productname" required> </div>
+        <div class="col-3"><input id="version" name="version">  </div>
+        <div class="col-3">
+
+          
+            <select name="country" id="country">
+            
+                <option value="US">US</option>
+                <option value="AU">AU</option>
+                <option value="BR">BR</option>
+                <option value="CA">CA</option>
+                <option value="CN">CN</option>
+                <option value="FR">FR</option>
+                <option value="DE">DE</option>
+                <option value="IN">IN</option>
+                <option value="IT">IT</option>
+                <option value="MX">MX</option>
+                <option value="NL">NL</option>
+                <option value="SG">SG</option>
+                <option value="ES">ES</option>
+                <option value="TR">TR</option>
+                <option value="AE">AE</option>
+                <option value="GB">GB</option>
+                <option value="JP">JP</option>
+            
+            </select>
+
+
+
+
+        </div>
+
         </div>
 
         <br>
 
         <div>
-            <button  class=" btn-danger">Search!</button>
+            <button  class=" btn-danger">Search By Keyword</button>
         </div>
 
     </form>
