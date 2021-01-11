@@ -1,61 +1,78 @@
-#AppleTrueDeal Project 
+#TrueDeal Project 
 
 
 ##Goal
 
-###To refine the data resources and narrow down the scope, I decide only use apple products as this demo project.
+###Return price/description/reviews
 
-- return apple product price/description from amazon and walmart.
-- combine amazon review,walmart review and give the product review rating.
+- return apple product price/description from amazon.
+- give users log in and let user creates their own shoppinglist.
 
 
 ##User Persona
  
 -  Basic everyday user who wants to know what price for product will qualify for true deal, otherwise it will be a fake promo.
 All ages. 
-- Location: US marketplace, amazon/walmart user.
+- Location:  amazon/walmart user.
 - User need: get the lowest price.
 
+## Main functions
+
+- search by keyword
+
+- search by asin
+
+- reviews by asin
+
+- add/edit shoppinglist
+
+- add favorite(to be conintued)
+
+
 ## API
-- amazon price/description:
+- Amazon Product/Reviews/Keywords API Documentation
 
-https://english.api.rakuten.net/ebappa1971/api/amazon-price/endpoints
+- https://rapidapi.com/logicbuilder/api/amazon-product-reviews-keywords
 
-https://rapidapi.com/axesso/api/axesso-amazon-data-service1
-
-https://rapidapi.com/axesso/api/axesso-amazon-data-service1?endpoint=5c420736e4b0cc6cdc0edc7f
-
-https://rapidapi.com/logicbuilder/api/amazon-product-reviews-keywords
-
-
-- walmart price/description:
- https://developer.walmartlabs.com/docs?ref=apilist.fun
+- Product Search (GET)
+- Product review ( GET)
+- Product description (GET)
 
 ##Schema Design
 
 - amazon: id-a, name, price, review, description
-- walmart: id-w,name,price,review,description
 
-- user login : id-user, username,password,profile-photo
+- user login : user_id, username,password,profile-img,shoppinglist
+- shopping list: id, content, done, username
+
 
 
 - relation table 1:
 user-amazon-favorite
 
 - relation-table 2:
-user-walmart-favorite
+user-shopping-list
 
-![schema image here](./truedeal2.png)
+![schema image here](./truedealschema.png)
 
 ##Simple Mockup
-- search bar will include: 
-Apple
-Product category: 
-product version:
-other(optional)
+#search by keyword
 
+![mockup image here](mockup/1.png)
 
+![mockup image here](mockup/2.png)
 
-![mockup image here](./mockup1.png)
+#search by asin
 
-![mockup image here](./mockup2.png)
+![mockup image here](mockup/3.png)
+
+![mockup image here](mockup/4.png)
+
+#review by asin
+![mockup image here](mockup/5.png)
+
+#profile and shopping list
+![mockup image here](mockup/6.png)
+
+![mockup image here](mockup/7.png)
+
