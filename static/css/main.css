@@ -17,3 +17,30 @@ h1{
     font-family: 'Fraunces', serif;
 }
 
+.center{
+    margin:auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.abox{
+  opacity: 0.96;
+  background-color:white;
+   z-index: -1; 
+   position: absolute;
+    filter: blur(8px); 
+    height: 100%; 
+    width: 90%; 
+    margin-top: auto;
+    margin-left: 5%;
+     margin-right: 5%;
+     border: 3px solid purple;
+}
+
+.bbox{
+    margin-top: 20%;
+    margin-left: 25%;
+    margin-right: 5%;
+    left:10%;
+    position: absolute;
+}
