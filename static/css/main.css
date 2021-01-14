@@ -1,5 +1,19 @@
-* { 
-    background-color: blanchedalmond;
+*{ 
+    
     font-size: large;
+    font-family: 'Roboto', sans-serif;
+    
+   
+}
+
+body{
+    background-image: url(/static/background.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+h1{
+    font-family: 'Fraunces', serif;
 }
 

@@ -1,5 +1,4 @@
 {%extends 'base.html'%}
-
 {%block content%}
 <div class="container">
 <form id="shoppinglist_form" method="POST">
@@ -23,22 +22,6 @@
 
 
 <h2>Your Shopping list here:</h2>
-
-<!----- OLD LIST 
-<ol>
-    {% for list in lists %}
-        <li>
-            {% if list.done %} <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{% endif %}
-            <a class="btn btn-success" href="/shoppinglist/{{list.id}}/done">Done</a>
-            <form>
-                <button class="btn btn-danger" formaction="/shoppinglist/{{list.id}}/delete" formmethod="POST">Delete</button>
-            </form>
-
-        </li>
-    {% endfor %}
-</ol>-->
-
-
 
 <table class="table table-hover">
     <thead>
