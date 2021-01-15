@@ -32,6 +32,7 @@ class User(db.Model):
                          nullable=False)
 
     shoppinglist = db.relationship("ShoppingList",backref="user",cascade="all,delete")
+    userfav = db.relationship("UserFav",backref ="user", cascade="all,delete")
 
 
     
@@ -82,22 +83,6 @@ class ShoppingList(db.Model):
     username = db.Column(db.Text, db.ForeignKey("users.username"), nullable= False)
 
 
-
-
-
-
-
-###amazon product 
-class AmazonProduct(db.Model):
-    """define amazon product details"""
-    __tablename__ = "amazon"
-
-    id= db.Column(db.Integer, primary_key=True, autoincrement=True)
-    asin = db.Column(db.Text, nullable=False,unique=True)
-    price = db.Column(db.Text)
-    description = db.Column(db.Text)
-
-
  ##user favorite model
 class UserFav(db.Model):
     """ user favorite relationship model"""
@@ -105,6 +90,7 @@ class UserFav(db.Model):
 
     id= db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.Text, db.ForeignKey('users.username'),nullable=False)
-    asin = db.Column(db.Text, db.ForeignKey('amazon.asin'),nullable=False)
-    
+    asin = db.Column(db.Text,nullable=False)
+    fav = db.Column(db.Boolean, default =True)
+
 

@@ -199,7 +199,8 @@ def show_user(username):
         user = User.query.filter_by(username=username).first_or_404()
         profile_img = user.profile_img
         lists = ShoppingList.query.filter_by(username = username)
-        return render_template("username.html",user=user, profile_img=profile_img, lists=lists)
+        userfav = user.userfav
+        return render_template("username.html",user=user, profile_img=profile_img, lists=lists,userfav=userfav)
 
 ## user-delete user
 @app.route("/users/<username>/delete", methods=['POST'])
@@ -376,16 +377,26 @@ def favicon():
 def add_fav(asin):
     """add fav to users"""
 
-    asin = request.args["asin"]
     username=session['username']
-    newFav = UserFav(username,asin )
+    newFav = UserFav(username=username,asin=asin, fav=True )
     db.session.add(newFav)
     db.session.commit()
 
-    return redirect("/")
+    return redirect(f"/users/{username}")
 
 
-
+###remove favorite asin
+@app.route('/removefav/<asin>',methods=["POST"])
+def remove_fav(asin):
+    """remove fav to users"""
+    username= session['username']
+    userfav = UserFav.query.filter_by(username=username).first_or_404
+    userfav.fav = False
+    db.session.add(userfav)
+    db.session.commit()
+    
+    return redirect(f"/users/{username}")
+    
 
     
 
