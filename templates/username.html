@@ -56,10 +56,16 @@
   </div>
 
 
-  <h1> Your favorite asins</h1>
+  
 
   {%for fav in userfav %}
-  <h1>{{fav.asin}}</h1>
+   {%if fav.fav %}
+   love!
+  <h1>{{fav.asin}}</h1> <h2>{{fav.fav}}</h2>
+  {%else%}
+  hate!
+  <h1>{{fav.asin}}</h1> {{fav.fav}}
+  {%endif%}
   {%endfor%}
 
 

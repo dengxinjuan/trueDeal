@@ -385,14 +385,14 @@ def add_fav(asin):
     return redirect(f"/users/{username}")
 
 
-###remove favorite asin
+###remove favorite asin, hate this item!
+
 @app.route('/removefav/<asin>',methods=["POST"])
 def remove_fav(asin):
     """remove fav to users"""
     username= session['username']
-    userfav = UserFav.query.filter_by(username=username).first_or_404
-    userfav.fav = False
-    db.session.add(userfav)
+    hate = UserFav(username=username,asin=asin,fav=False)
+    db.session.add(hate)
     db.session.commit()
     
     return redirect(f"/users/{username}")
