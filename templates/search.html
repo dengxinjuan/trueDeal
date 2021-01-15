@@ -23,6 +23,13 @@
                 <div class="btn">
                     <a href="{{result[i]['url']}}" target="_blank" class="btn btn-danger">Go!</a>
                 </div>
+
+                <div>
+                  <button data-id="{{result[i]['asin']}}" class="btn btn-success">Favorites</button>
+                  <button data-id="{{result[i]['asin']}}" class="btn btn-success">UnFavorites</button>
+
+                
+                </div>
         </div> 
     </div> 
 
@@ -31,7 +38,7 @@
       
 </div>
 
-<p style="color:blue">{{walmartresult}}</p>
+
 
 
 {%endblock%}
