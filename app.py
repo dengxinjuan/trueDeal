@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,jsonify,redirect,flash,session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db,connect_db,User,ShoppingList
+from models import db,connect_db,User,ShoppingList,UserFav
 
 import json
 import requests
@@ -116,11 +116,13 @@ def search_result():
     country = request.args["country"]
     searchterm = brand+productname+version
     result = request_amazon(searchterm,country)
+
+    username = session['username']
     
   
     #walmartresult =request_walmart(searchterm)
     #targetresult=request_target(searchterm)
-    return render_template('search.html',result=result, len=len(result))
+    return render_template('search.html',result=result, len=len(result),username=username)
 
 
 ##########User ####
@@ -357,6 +359,25 @@ def done_shoppinglist(shoppinglist_id):
         shoppinglist.done = True
     db.session.commit()
     return redirect(f"/users/{shoppinglist.username}")
+
+
+
+#### add favorite asin 
+@app.route('/addfav', methods=["POST"])
+def add_fav():
+    """add fav to users"""
+
+    asin = request.args["asin"]
+    newFav = UserFav(username = session['username'],asin = asin )
+    db.session.add(newFav)
+    db.session.commit()
+
+    return jsonify(message ="added")
+
+
+
+
+    
 
 
 

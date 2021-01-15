@@ -82,20 +82,28 @@ class ShoppingList(db.Model):
     username = db.Column(db.Text, db.ForeignKey("users.username"), nullable= False)
 
 
+
+
+
+
+
 ###amazon product 
 class AmazonProduct(db.Model):
     """define amazon product details"""
     __tablename__ = "amazon"
-    asin = db.Column(db.Text, nullable=False)
+
+    id= db.Column(db.Integer, primary_key=True, autoincrement=True)
+    asin = db.Column(db.Text, nullable=False,unique=True)
     price = db.Column(db.Text)
     description = db.Column(db.Text)
-
-
 
 
  ##user favorite model
 class UserFav(db.Model):
     """ user favorite relationship model"""
     __tablename__ = "user_fav"
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), ondelete='cascade')
-    user_fav = db.Column(db.Integer, db.ForeignKey('amazon.asin'), ondelete='cascade')
+
+    id= db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.Text, db.ForeignKey('users.username'),nullable=False)
+    asin = db.Column(db.Text, db.ForeignKey('amazon.asin'),nullable=False)
+
