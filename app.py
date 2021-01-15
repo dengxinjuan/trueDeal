@@ -1,7 +1,8 @@
-from flask import Flask,render_template,request,jsonify,redirect,flash,session
+from flask import Flask,render_template,request,jsonify,redirect,flash,session,send_from_directory
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db,connect_db,User,ShoppingList,UserFav
 
+import os
 import json
 import requests
 
@@ -362,17 +363,26 @@ def done_shoppinglist(shoppinglist_id):
 
 
 
+### fix favicon error
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+
+
 #### add favorite asin 
-@app.route('/addfav', methods=["POST"])
-def add_fav():
+@app.route('/addfav/<asin>', methods=["POST"])
+def add_fav(asin):
     """add fav to users"""
 
     asin = request.args["asin"]
-    newFav = UserFav(username = session['username'],asin = asin )
+    username=session['username']
+    newFav = UserFav(username,asin )
     db.session.add(newFav)
     db.session.commit()
 
-    return jsonify(message ="added")
+    return redirect("/")
 
 
 

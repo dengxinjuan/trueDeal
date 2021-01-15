@@ -25,12 +25,12 @@
                 </div>
 
                 <div>
-                  <form action="/addfav" method="POST">
+                  <form action="/addfav/{{result[i]['asin']}}" method="POST">
                     <input type="hidden" name="asin" value="{{result[i]['asin']}}">
                   <button >Favorites</button>
                   </form>
 
-                
+  
                 </div>
         </div> 
     </div> 

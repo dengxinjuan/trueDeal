@@ -106,4 +106,5 @@ class UserFav(db.Model):
     id= db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.Text, db.ForeignKey('users.username'),nullable=False)
     asin = db.Column(db.Text, db.ForeignKey('amazon.asin'),nullable=False)
+    
 
