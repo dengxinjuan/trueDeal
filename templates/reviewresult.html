@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+
+
+{%block content%}
+
+
+<div>
+
+
+   
+    {%if result%}
+    {%for item in result%} 
+
+
+    <div class="jumbotron jumbotron-fluid" style="background-color: azure; z-index: 10;">
+        <div class="container">
+          <h1 class="display-4">{{item.title}}</h1>
+          <p>{{item.review}}</p>
+          <p>{{item.rating}}</p>
+          <p>{{item.name}}</p>
+          <p>{{item['date']['date']}}</p>
+        </div>
+      </div>
+
+
+    
+
+    {%endfor%}
+  
+</div>
+
+{%endif%}  
+
+{%endblock%}

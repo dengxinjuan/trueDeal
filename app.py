@@ -304,7 +304,7 @@ def reviews_by_asin():
         review_search_term = form.reviewsByAsin.data
         country = form.country.data
         result = search_reviews(review_search_term,country)
-        return render_template('reviews.html',form=form, result=result)
+        return render_template('reviewresult.html',result=result)
 
     return render_template('reviews.html',form=form)
 
