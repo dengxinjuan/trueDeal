@@ -4,11 +4,11 @@
 
 <div class="center abox"></div>
 
-<div class="container bbox">
+<div class="container bbox" >
 <h1>Reviews-By-Asin</h1>
 <hr>
 
-<form id="reviews_by_asin" method="POST" >
+<form  method="POST" id="reviews_by_asin">
     {{form.hidden_tag()}}
     {% for field in form 
     if field.widget.input_type != 'hidden' %}
@@ -21,27 +21,41 @@
         {% endfor %}
     </p>
     {%endfor%}
-    <button type="submit" class="btn-danger btn-large">Reviews-By-ASIN</button>
+    <button type="submit" class="btn-danger btn-large" onclick="hidden()">Reviews-By-ASIN</button>
     
     </form>
     </div>
 
 
+    <div>
 
-    <div style="margin-left: 11%;">
+
         {%if result%}
-        {%for item in result%}
+        {%for item in result%} 
+
+
+        <div class="jumbotron jumbotron-fluid" style="background-color: azure; z-index: 10;">
+            <div class="container">
+              <h1 class="display-4">{{item.title}}</h1>
+              <p>{{item.review}}</p>
+              <p>{{item.rating}}</p>
+              <p>{{item.name}}</p>
+              <p>{{item['date']['date']}}</p>
+            </div>
+          </div>
     
-        <h1>{{item.title}}</h1>
-        <p>{{item.review}}</p>
-        <p>{{item.rating}}</p>
-        <p>{{item.name}}</p>
-        <p>{{item['date']['date']}}</p>
+    
+        
     
         {%endfor%}
       
     </div>
-    {%endif%}
+
+
+
+
+
+    {%endif%}  
 
 
 {%endblock%}

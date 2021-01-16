@@ -55,19 +55,52 @@
     {% endfor %}
   </div>
 
+  <hr>
 
   
+  <div class="container">
+   <div class="row">
 
+  <div class="col-6 list-group">
+
+    <a href="#" class="list-group-item list-group-item-action active">
+        You loved Asin:
+      </a>
   {%for fav in userfav %}
    {%if fav.fav %}
-   love!
-  <h1>{{fav.asin}}</h1> <h2>{{fav.fav}}</h2>
-  {%else%}
-  hate!
-  <h1>{{fav.asin}}</h1> {{fav.fav}}
+
+
+   <a href="#" class="list-group-item list-group-item-action">   <small style="color:red">Love!</small>{{fav.asin}}</a>
+  
   {%endif%}
   {%endfor%}
 
+
+
+
+
+
+
+
+  </div>
+
+  <div class="col-6">
+    <a href="#" class="list-group-item list-group-item-action active">
+        You hated Asin:
+      </a>
+
+
+  {%for fav in userfav %}
+  {%if fav.fav == False %}
+ 
+
+  <a href="#" class="list-group-item list-group-item-action"><small style="color: aqua;">Hate!</small> {{fav.asin}}</a>
+ {%endif%}
+ {%endfor%}
+ </div>
+ </div>
+
+ </div>
 
 </div>
 
