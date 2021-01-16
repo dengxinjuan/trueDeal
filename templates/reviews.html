@@ -4,11 +4,11 @@
 
 <div class="center abox"></div>
 
-<div class="container bbox" >
+<div class="container bbox" id="reviews_by_asin" style="display: block;" >
 <h1>Reviews-By-Asin</h1>
 <hr>
 
-<form  method="POST" id="reviews_by_asin">
+<form  method="POST" >
     {{form.hidden_tag()}}
     {% for field in form 
     if field.widget.input_type != 'hidden' %}
@@ -21,10 +21,12 @@
         {% endfor %}
     </p>
     {%endfor%}
-    <button type="submit" class="btn-danger btn-large" onclick="hidden()">Reviews-By-ASIN</button>
+    <button type="submit" class="btn-danger btn-large" id="reviewbtn">Reviews-By-ASIN</button>
     
     </form>
     </div>
+
+    <button id="showbtn" style="display: none;">Show the form</button>
 
 
     <div>
