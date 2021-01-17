@@ -46,6 +46,13 @@ h1{
 }
 
 
-.hidden{
-    display: none;
+.result{
+    background-color: azure; 
+    z-index: 10;
+
+}
+
+.lovehate{
+    height: 50px;
+    width: 50px;
 }

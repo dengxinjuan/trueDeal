@@ -70,7 +70,7 @@
    {%if fav.fav %}
 
 
-   <a href="#" class="list-group-item list-group-item-action">   <small style="color:red">Love!</small>{{fav.asin}}</a>
+   <a href="#" class="list-group-item list-group-item-action">   <small><img src="../static/love.png" class="lovehate"></small>{{fav.asin}}</a>
   
   {%endif%}
   {%endfor%}
@@ -94,7 +94,7 @@
   {%if fav.fav == False %}
  
 
-  <a href="#" class="list-group-item list-group-item-action"><small style="color: aqua;">Hate!</small> {{fav.asin}}</a>
+  <a href="#" class="list-group-item list-group-item-action"><small><img src="../static/hate.png" class="lovehate"></small> {{fav.asin}}</a>
  {%endif%}
  {%endfor%}
  </div>

@@ -263,7 +263,7 @@ def search_by_asin():
         asin_search_term = form.ASIN.data
         country = form.country.data
         result = product_by_asin(asin_search_term,country)
-        return render_template('asin.html',form=form,result=result)
+        return render_template('asinresult.html',result=result)
     
     return render_template("asin.html",form=form)
 

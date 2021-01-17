@@ -19,24 +19,29 @@
                
               </ul>
               
-          
-                <div class="btn">
-                    <a href="{{result[i]['url']}}" target="_blank" class="btn btn-danger">Go!</a>
+              <div> 
+                <div class="row">
+                <div class="btn col-sm">
+                    <a href="{{result[i]['url']}}" target="_blank" class="btn"><img src="../static/go.png" class="lovehate"></a>
                 </div>
 
-                <div>
+                <div class="col-sm">
                   <form action="/addfav/{{result[i]['asin']}}" method="POST">
                     <input type="hidden" name="asin" value="{{result[i]['asin']}}">
-                  <button >Love!</button>
+                  <button class="btn"><img src="../static/love.png" class="lovehate"></button>
                   </form>
                 </div> 
 
 
-                <div>
+                <div class="col-sm">
                   <form action="/removefav/{{result[i]['asin']}}" method="POST">
                     <input type="hidden" name="asin" value="{{result[i]['asin']}}">
-                  <button >Hate!</button>
+                  <button class="btn" ><img src="../static/hate.png" class="lovehate"></button>
                   </form>
+                </div>
+
+              </div>
+
                 </div>
 
 
