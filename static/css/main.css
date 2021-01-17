@@ -1,8 +1,7 @@
 *{ 
     
     font-size: large;
-    font-family: 'Roboto', sans-serif;
-    
+    font-family: 'Roboto', sans-serifß
    
 }
 
@@ -55,4 +54,12 @@ h1{
 .lovehate{
     height: 50px;
     width: 50px;
+}
+
+.profile_img{
+
+    border-radius:50%; 
+    width: 300px;
+    border:solid 4px purple
+
 }

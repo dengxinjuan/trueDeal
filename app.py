@@ -336,7 +336,7 @@ def new_shopping_list(username):
 
     else:
         lists = ShoppingList.query.filter_by(username = username)
-        return render_template("shopping_list.html",form=form,lists=lists)
+        return render_template("shoppinglist.html",form=form,lists=lists)
 
 
 @app.route("/shoppinglist/<int:shoppinglist_id>/delete", methods=["POST"])

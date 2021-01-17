@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">ß
     <title>Homepage</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap" rel="stylesheet">
@@ -11,12 +11,11 @@
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     
     <script src="https://unpkg.com/jquery"></script>
-    <link href="../static/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
-
 
     <nav  class="navbar navbar-expand-lg navbar-dark" style="box-shadow: 0 4px 4px -4px black; background-color:rgb(161, 116, 204); font-family: 'Roboto', sans-serif; font-weight: bold;">
         <div class="container-fluid">

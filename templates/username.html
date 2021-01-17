@@ -12,20 +12,21 @@
 <div class="container">
 <div class="row">
 <div class="col-6">
-<table>
-    <tr valign="top">
-        <td><img src="{{profile_img}}" alt="user photo here" style="border-radius:50%"></td>
-        <td><h1>Awesome! You are {{ user.username }}!</h1></td>
-    </tr>
-</table>
+
+   
+        <img src="{{profile_img}}" alt="user photo here" class="profile_img">
+        <h1>Awesome! You are {{ user.username }}!</h1>
+
 </div>
 
 <div class="col-6">
+    <div class="container">
+    <a  class="btn btn-primary btn-sm col-3" href="/logout">Log Out</a>
+    </div>
 
-    <a  class="btn btn-success btn-sm col-3" href="/logout">Log Out</a>
+    <hr style="visibility: hidden;">
     
-    
-    
+    <div class="container">
     <form>
         <button class="btn btn-danger btn-sm col-3"
                 formaction="/users/{{ user.username }}/delete"
@@ -34,9 +35,18 @@
         </button>
     
       </form>
+      </div>
      
     </div>
 </div>
+
+
+
+
+
+
+
+
 <hr>
 
 <div>
