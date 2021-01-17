@@ -1,4 +1,8 @@
-#TrueDeal Project 
+#TrueDeal Project
+
+##Deployment at heroku link
+
+
 
 
 ##Goal
@@ -7,6 +11,12 @@
 
 - return apple product price/description from amazon.
 - give users log in and let user creates their own shoppinglist.
+- record users favotite items, and hated items.
+
+
+##Sample User
+- username: cat
+- password: cat
 
 
 ##User Persona
@@ -18,18 +28,34 @@ All ages.
 
 ## Main functions
 
-- search by keyword
+- search by keyword (support all markets)
 
-- search by asin
+- search by asin (search all markets)
 
-- reviews by asin
+- reviews by asin (search all markets)
 
 - add/edit shoppinglist
 
-- add favorite(to be conintued)
+- add favorite, add hate items
+
+##User Flow
+
+- user can log in to view their shoppinglists, and save favorite, hate, and seach itesms.
+
+##Coding Languages
+
+- HTML, CSS, JAVASCRIPT, PYTHON, SQL,SQLACHLMY, FLASK, FLASK-FORM and more
+
+##UI
+- The theme is more coloful, and childish stylish.
+- google fonts
+- color story: purple, blue, white, green
 
 
 ## API
+
+(This API I choose from RapidApi)
+
 - Amazon Product/Reviews/Keywords API Documentation
 
 - https://rapidapi.com/logicbuilder/api/amazon-product-reviews-keywords
@@ -37,6 +63,7 @@ All ages.
 - Product Search (GET)
 - Product review ( GET)
 - Product description (GET)
+
 
 ##Schema Design
 
@@ -59,6 +86,7 @@ user-shopping-list
 #search by keyword
 
 ![mockup image here](mockup/1.png)
+#search result and you can go to amazon page, like it or hate it
 
 ![mockup image here](mockup/2.png)
 
@@ -71,8 +99,18 @@ user-shopping-list
 #review by asin
 ![mockup image here](mockup/5.png)
 
-#profile and shopping list
 ![mockup image here](mockup/6.png)
 
+#create shopping list
+
 ![mockup image here](mockup/7.png)
+
+## user profile page
+
+
+![mockup image here](mockup/8.png)
+
+##user love or hate asin lists
+
+![mockup image here](mockup/9.png)
 
