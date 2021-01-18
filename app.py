@@ -11,14 +11,15 @@ from forms import LoginForm,RegisterForm,AsinSearchForm, ReviewsByAsinForm, Shop
 app= Flask(__name__)
 
 #connect database
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres:///truedeal"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', "postgres:///truedeal")
 # compress the warning
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #echo the sql command
 app.config['SQLALCHEMY_ECHO'] = True
 #CONFIG THE DEBUGTOOL
 app.debug = True
-app.config['SECRET_KEY'] = 'SOMETHINGYOUDONTKNOW'
+# config heroku variable, secret key
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY','YOUDONTKNOWTHAT')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
