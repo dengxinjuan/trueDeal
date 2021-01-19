@@ -3,7 +3,7 @@
 
 {%block content%}
 
-
+{%if result%}
 <div style="color: orange; font-size:larger" class="container card-deck" >
  
     <!-- For loop logic of jinja template -->
@@ -58,8 +58,12 @@
       
 </div>
 
+  {%else%}
 
+  <h1>There is no result, try again</h1>
+  <iframe src="https://giphy.com/embed/1AjEAMJqZVTzZLmkUD" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bigbrotherafterdark-1AjEAMJqZVTzZLmkUD"></a></p>
 
+{%endif%}
 
 {%endblock%}
 

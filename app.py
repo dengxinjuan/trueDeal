@@ -124,7 +124,7 @@ def search_result():
   
     #walmartresult =request_walmart(searchterm)
     #targetresult=request_target(searchterm)
-    return render_template('search.html',result=result, len=len(result),username=username)
+    return render_template('search.html',result=result, len=len(result))
 
 
 ##########User ####
