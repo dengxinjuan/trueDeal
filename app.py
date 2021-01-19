@@ -119,7 +119,7 @@ def search_result():
     searchterm = brand+productname+version
     result = request_amazon(searchterm,country)
 
-    username = session['username']
+    #username = session['username']
     
   
     #walmartresult =request_walmart(searchterm)
