@@ -11,19 +11,28 @@
 <hr>
 
 <form id="Search-By-ASIN" method="POST" >
+
+<div class="col-lg-12">
+
+<div class="row">
 {{form.hidden_tag()}}
 {% for field in form 
 if field.widget.input_type != 'hidden' %}
 
-<p>
+<div class="col-lg-3 col-md-2 col-sm-12 p-0">
     {{field.label}} 
-    {{field}}
+    {{field(class_="form-control search-slt")}}
     {% for error in field.errors %}
     {{error}}
     {% endfor %}
-</p>
+</div>
 {%endfor%}
-<button type="submit" class="btn-danger btn-large">Search-By-ASIN</button>
+
+<div class="col-lg-3 col-md-2 col-sm-12 p-0">
+<button type="submit" class="btn btn-danger wrn-btn" style="margin-top: 1.45rem;">Search-By-ASIN</button>
+</div>
+
+</div>
 
 </form>
 </div>
