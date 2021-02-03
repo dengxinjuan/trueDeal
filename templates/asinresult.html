@@ -1,17 +1,32 @@
 {%extends 'base.html'%} {%block content%}
 
-<div class="container result">
+<div class="container">
   {%if result %}
-  <h1>{{result['title']}}</h1>
-  <p>{{result['description']}}</p>
-  <img src="{{result['main_image']}}" alt="product image here" />
-  <ul>
-    {%for item in result['feature_bullets']%}
-    <li>{{item}}</li>
 
-    {%endfor%}
-  </ul>
-  <a href="{{result['url']}}" class="btn btn-danger" target="_blank">Go!</a>
+  <div class="card mb-3" style="max-width: 1200px">
+    <div class="row g-0" style="display: flex">
+      <div class="col-md-3">
+        <img
+          src="{{result['main_image']}}"
+          alt="product image here"
+          style="width: 250px"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title">{{result['title']}}</h3>
+          <p class="card-text">{{result['description']}}</p>
+          {%for item in result['feature_bullets']%}
+          <p class="card-text">{{item}}</p>
+          {%endfor%}
+
+          <a href="{{result['url']}}" class="btn btn-danger" target="_blank"
+            >Go!</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 
   {%else%}
 
