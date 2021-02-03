@@ -1,28 +1,40 @@
-
 {%extends 'base.html'%}
-
-
 {%block content%}
+
+
+<div class="center abox" style="height: 500px;"></div>
+
 <div class="container">
-<h1>Login Form</h1>
-<form id="login_form" method="POST">
-{{form.hidden_tag()}}
-{% for field in form 
-if field.widget.input_type != 'hidden' %}
+   
 
-<p>
-    {{field.label}} 
-    {{field}}
-    {% for error in field.errors %}
-    {{error}}
-    {% endfor %}
-</p>
-{%endfor%}
-<button type="submit">Login!</button>
+   <h1 class="text-center">Login<img src="../static/navbar.png" style="height: 150px;">Form</h1>
+   
+   <div class="row justify-content-center">
+      <div class="col-md-5">
+         <form id="login_form" method="POST">
+            {{form.hidden_tag()}}
 
-</form>
+            {% for field in form 
+            if field.widget.input_type != 'hidden' %}
+            <div class="form-group">
+               {{field.label}} 
+               {{field(class_="form-control")}}
+               {% for error in field.errors %}
+               <small class="form-text text-danger">
+               {{error}}
+               </small>
+               {% endfor %}
+            </div>
+            {%endfor%} 
+
+            <button type="submit" class="btn btn-danger wrn-btn" style="margin-top: 8px;">Login!</button>
+         </form>
+      </div>
+   </div>
+
+
 </div>
-
-
 {%endblock%}
+
+
 
