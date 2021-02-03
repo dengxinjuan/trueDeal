@@ -1,50 +1,41 @@
+{%extends 'base.html'%} {%block content%}
 
-{%extends 'base.html'%}
-
-{%block content%}
-
-<div class="center abox" style="height: 500px;"></div>
+<div class="center abox" style="height: 500px"></div>
 
 <div class="container">
-<h1 class="text-center">Sign-up <img src="../static/navbar.png" style="height: 150px;">Form</h1>
+  <h1 class="text-center">
+    Sign-up <img src="../static/navbar.png" style="height: 150px" />Form
+  </h1>
 
-<div class="row justify-content-center">
-<div class="col-md-5">
-<form id="login_form" method="POST">
-{{form.hidden_tag()}}
-{% for field in form 
-if field.widget.input_type != 'hidden' %}
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <form id="login_form" method="POST">
+        {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
+        'hidden' %}
 
-<div class="form-group">
-    {{field.label}} 
-    {{field(class_="form-control")}}
-    {% for error in field.errors %}
-    <small class="form-text text-danger">
-    {{error}}
-    </small>
-    {% endfor %}
+        <div class="form-group">
+          {{field.label}} {{field(class_="form-control")}} {% for error in
+          field.errors %}
+          <small class="form-text text-danger"> {{error}} </small>
+          {% endfor %}
+        </div>
+        {%endfor%}
+        <button
+          type="submit"
+          class="btn btn-danger wrn-btn"
+          style="margin-top: 8px"
+        >
+          Sign-up
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
-{%endfor%}
-<button type="submit"  class="btn btn-danger wrn-btn" style="margin-top: 8px;">Sign-up</button>
 
-</form>
-
-</div>
-
-</div>
-</div>
-
-
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
+{% with messages = get_flashed_messages() %} {% if messages %}
 <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
 </ul>
-{% endif %}
-{% endwith %}
-
-
-{%endblock%}
+{% endif %} {% endwith %} {%endblock%}

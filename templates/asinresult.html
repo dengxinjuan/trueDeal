@@ -1,33 +1,38 @@
-{%extends 'base.html'%}
-
-
-{%block content%}
+{%extends 'base.html'%} {%block content%}
 
 <div class="container result">
-    {%if result %}
-    <h1>{{result['title']}}</h1>
-    <p>{{result['description']}}</p>
-    <img src="{{result['main_image']}}" alt="product image here">
-    <ul>
-        {%for item in result['feature_bullets']%}
-        <li>{{item}}</li>
-       
-        {%endfor%}
-    </ul>
-    <a href="{{result['url']}}" class="btn btn-danger" target="_blank">Go!</a>
+  {%if result %}
+  <h1>{{result['title']}}</h1>
+  <p>{{result['description']}}</p>
+  <img src="{{result['main_image']}}" alt="product image here" />
+  <ul>
+    {%for item in result['feature_bullets']%}
+    <li>{{item}}</li>
 
+    {%endfor%}
+  </ul>
+  <a href="{{result['url']}}" class="btn btn-danger" target="_blank">Go!</a>
 
-    {%else%} 
+  {%else%}
 
-    <h1>There is no result! Try Again!</h1>
+  <h1>There is no result! Try Again!</h1>
 
-    <iframe src="https://giphy.com/embed/1Bh3GRMCFtSd2L1c57" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hyperrpg-nightmare-gtfo-why-me-1Bh3GRMCFtSd2L1c57">via GIPHY</a></p>
+  <iframe
+    src="https://giphy.com/embed/1Bh3GRMCFtSd2L1c57"
+    width="480"
+    height="360"
+    frameborder="0"
+    class="giphy-embed"
+    allowfullscreen
+  ></iframe>
+  <p>
+    <a
+      href="https://giphy.com/gifs/hyperrpg-nightmare-gtfo-why-me-1Bh3GRMCFtSd2L1c57"
+      >via GIPHY</a
+    >
+  </p>
 
-    
-    {%endif%}
-    </div>
-
-
+  {%endif%}
+</div>
 
 {%endblock%}
-

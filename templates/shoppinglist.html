@@ -1,34 +1,25 @@
-{%extends 'base.html'%}
-
-{%block content%}
+{%extends 'base.html'%} {%block content%}
 
 <div class="center abox"></div>
 
-<div class="container" >
+<div class="container">
+  <form id="shoppinglist_form" method="POST" style="margin-top: 5%">
+    {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
+    'hidden' %}
 
-<form id="shoppinglist_form" method="POST" style="margin-top: 5%;">
-    {{form.hidden_tag()}}
-    {% for field in form 
-    if field.widget.input_type != 'hidden' %}
-    
     <p>
-        {{field.label}} 
-        {{field}}
-        {% for error in field.errors %}
-        {{error}}
-        {% endfor %}
+      {{field.label}} {{field}} {% for error in field.errors %} {{error}} {%
+      endfor %}
     </p>
     {%endfor%}
     <button class="btn btn-primary" type="submit">Create Shopping List!</button>
+  </form>
 
-</form>
+  <hr />
 
-<hr>
+  <h1>Your Shopping list here:</h1>
 
-
-<h1>Your Shopping list here:</h1>
-
-<table class="table table-hover">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -38,29 +29,35 @@
       </tr>
     </thead>
     <tbody>
-      
-        {% for list in lists %}
+      {% for list in lists %}
       <tr>
-       
         <th scope="row">{{list.id}}</th>
-        <td>{% if list.done %} <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{% endif %}</td>
-        <td>   <a class="btn btn-primary" href="/shoppinglist/{{list.id}}/done">Done</a></td>
-        <td>  <form>
-            <button class="btn btn-danger" formaction="/shoppinglist/{{list.id}}/delete" formmethod="POST">Delete</button>
-        </form></td>
-   
+        <td>
+          {% if list.done %}
+          <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{%
+          endif %}
+        </td>
+        <td>
+          <a class="btn btn-primary" href="/shoppinglist/{{list.id}}/done"
+            >Done</a
+          >
+        </td>
+        <td>
+          <form>
+            <button
+              class="btn btn-danger"
+              formaction="/shoppinglist/{{list.id}}/delete"
+              formmethod="POST"
+            >
+              Delete
+            </button>
+          </form>
+        </td>
       </tr>
-   
+
       {%endfor%}
-     
     </tbody>
   </table>
-
-
-
-
-
-
 </div>
 
 {%endblock%}

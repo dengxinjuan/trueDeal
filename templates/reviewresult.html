@@ -1,38 +1,32 @@
-{%extends 'base.html'%}
-
-
-{%block content%}
-
+{%extends 'base.html'%} {%block content%}
 
 <div>
+  {%if result%} {%for item in result%}
 
+  <div class="jumbotron jumbotron-fluid result">
+    <div class="container">
+      <h1 class="display-4">{{item.title}}</h1>
+      <p>{{item.review}}</p>
+      <p>{{item.rating}}</p>
+      <p>{{item.name}}</p>
+      <p>{{item['date']['date']}}</p>
+    </div>
+  </div>
 
-   
-    {%if result%}
-    {%for item in result%} 
-
-
-    <div class="jumbotron jumbotron-fluid result">
-        <div class="container">
-          <h1 class="display-4">{{item.title}}</h1>
-          <p>{{item.review}}</p>
-          <p>{{item.rating}}</p>
-          <p>{{item.name}}</p>
-          <p>{{item['date']['date']}}</p>
-        </div>
-      </div>
-
-
-    
-
-    {%endfor%}
-  
+  {%endfor%}
 </div>
 {%else%}
-  <h1>Try Again! There is no result!</h1>
-  <iframe src="https://giphy.com/embed/1AjEAMJqZVTzZLmkUD" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bigbrotherafterdark-1AjEAMJqZVTzZLmkUD"></a></p>
+<h1>Try Again! There is no result!</h1>
+<iframe
+  src="https://giphy.com/embed/1AjEAMJqZVTzZLmkUD"
+  width="480"
+  height="480"
+  frameborder="0"
+  class="giphy-embed"
+  allowfullscreen
+></iframe>
+<p>
+  <a href="https://giphy.com/gifs/bigbrotherafterdark-1AjEAMJqZVTzZLmkUD"></a>
+</p>
 
-{%endif%}  
-
-{%endblock%}
-
+{%endif%} {%endblock%}

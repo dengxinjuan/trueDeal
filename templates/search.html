@@ -1,71 +1,66 @@
+{%extends 'base.html'%} {%block content%} {%if result%}
+<div style="color: orange; font-size: larger" class="container card-deck">
+  <!-- For loop logic of jinja template -->
+  {%for i in range(0, len)%}
 
-{%extends 'base.html'%}
+  <div class="card" style="width: 18rem; display: inline-block">
+    <img class="card-img-top" src="{{result[i]['thumbnail']}}" />
+    <div class="card-block">
+      <h4 class="card-title">{{result[i]['title']}}</h4>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Price: {{result[i]['price']['current_price']}}
+          {{result[i]['price']['currency']}}
+        </li>
+        <li class="list-group-item">Asin: {{result[i]['asin']}}</li>
+      </ul>
 
-{%block content%}
+      <div>
+        <div class="row">
+          <div class="btn col-sm">
+            <a href="{{result[i]['url']}}" target="_blank" class="btn"
+              ><img src="../static/go.png" class="lovehate"
+            /></a>
+          </div>
 
-{%if result%}
-<div style="color: orange; font-size:larger" class="container card-deck" >
- 
-    <!-- For loop logic of jinja template -->
-    {%for i in range(0, len)%} 
-    
-      <div class="card" style="width: 18rem; display: inline-block;"> 
-        <img class="card-img-top" src="{{result[i]['thumbnail']}}" > 
-        <div class="card-block"> 
-            <h4 class="card-title">{{result[i]['title']}}</h4> 
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Price: {{result[i]['price']['current_price']}} {{result[i]['price']['currency']}}</li>
-                <li class="list-group-item">Asin: {{result[i]['asin']}}</li>
-               
-              </ul>
-              
-              <div> 
-                <div class="row">
-                <div class="btn col-sm">
-                    <a href="{{result[i]['url']}}" target="_blank" class="btn"><img src="../static/go.png" class="lovehate"></a>
-                </div>
+          <div class="col-sm">
+            <form action="/addfav/{{result[i]['asin']}}" method="POST">
+              <input type="hidden" name="asin" value="{{result[i]['asin']}}" />
+              <button class="btn">
+                <img src="../static/love.png" class="lovehate" />
+              </button>
+            </form>
+          </div>
 
-                <div class="col-sm">
-                  <form action="/addfav/{{result[i]['asin']}}" method="POST">
-                    <input type="hidden" name="asin" value="{{result[i]['asin']}}">
-                  <button class="btn"><img src="../static/love.png" class="lovehate"></button>
-                  </form>
-                </div> 
+          <div class="col-sm">
+            <form action="/removefav/{{result[i]['asin']}}" method="POST">
+              <input type="hidden" name="asin" value="{{result[i]['asin']}}" />
+              <button class="btn">
+                <img src="../static/hate.png" class="lovehate" />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-                <div class="col-sm">
-                  <form action="/removefav/{{result[i]['asin']}}" method="POST">
-                    <input type="hidden" name="asin" value="{{result[i]['asin']}}">
-                  <button class="btn" ><img src="../static/hate.png" class="lovehate"></button>
-                  </form>
-                </div>
-
-              </div>
-
-                </div>
-
-
-
-
-
-
-
-        </div> 
-    </div> 
-
-
-    {%endfor%} 
-      
+  {%endfor%}
 </div>
 
-  {%else%}
+{%else%}
 
-  <h1>There is no result, try again</h1>
-  <iframe src="https://giphy.com/embed/1AjEAMJqZVTzZLmkUD" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bigbrotherafterdark-1AjEAMJqZVTzZLmkUD"></a></p>
+<h1>There is no result, try again</h1>
+<iframe
+  src="https://giphy.com/embed/1AjEAMJqZVTzZLmkUD"
+  width="480"
+  height="480"
+  frameborder="0"
+  class="giphy-embed"
+  allowfullscreen
+></iframe>
+<p>
+  <a href="https://giphy.com/gifs/bigbrotherafterdark-1AjEAMJqZVTzZLmkUD"></a>
+</p>
 
-{%endif%}
-
-{%endblock%}
-
-
-
+{%endif%} {%endblock%}

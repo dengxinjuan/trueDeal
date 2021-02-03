@@ -1,70 +1,69 @@
+{%extends 'base.html'%} {%block content%}
 
-{%extends 'base.html'%}
+<div class="center abox"></div>
 
-{%block content%}
-    
-    
-    <div class="center abox"></div>
+<!-----I want to use form here so next step will start use forms.py-->
 
+<div class="container bbox">
+  <h1>Search by Keyword</h1>
+  <hr />
 
- <!-----I want to use form here so next step will start use forms.py-->
-
-    <div class="container bbox" > 
-        <h1>Search by Keyword</h1>
-        <hr>
-    
-    <form  action="/search" id="search-form">
-      
-       <div class="col-lg-12">
-        <div class="row">
-            <div class="col-lg-3 col-md-2 col-sm-12 p-0"><input id="brand"type="text" name="brand" placeholder="Brand" class="form-control search-slt">  </div>
-        <div class="col-lg-3 col-md-2 col-sm-12 p-0"><input type="text id="productname" placeholder="Product Name"name="productname" class="form-control search-slt" required> </div>
-        <div class="col-lg-3 col-md-2 col-sm-12 p-0"><input id="version" name="version" placeholder="Product Version" class="form-control search-slt">  </div>
+  <form action="/search" id="search-form">
+    <div class="col-lg-12">
+      <div class="row">
         <div class="col-lg-3 col-md-2 col-sm-12 p-0">
-
-          
-            <select name="country" id="country" class="form-control search-slt">
-            
-                <option value="US">US</option>
-                <option value="AU">AU</option>
-                <option value="BR">BR</option>
-                <option value="CA">CA</option>
-                <option value="CN">CN</option>
-                <option value="FR">FR</option>
-                <option value="DE">DE</option>
-                <option value="IN">IN</option>
-                <option value="IT">IT</option>
-                <option value="MX">MX</option>
-                <option value="NL">NL</option>
-                <option value="SG">SG</option>
-                <option value="ES">ES</option>
-                <option value="TR">TR</option>
-                <option value="AE">AE</option>
-                <option value="GB">GB</option>
-                <option value="JP">JP</option>
-            
-            </select>
-
-
+          <input
+            id="brand"
+            type="text"
+            name="brand"
+            placeholder="Brand"
+            class="form-control search-slt"
+          />
         </div>
-
-        </div>
-
-        <br>
-
         <div class="col-lg-3 col-md-2 col-sm-12 p-0">
-            <button   class="btn btn-danger wrn-btn">Search By Keyword</button>
+          <input type="text id="productname" placeholder="Product Name"
+          name="productname" class="form-control search-slt" required>
         </div>
+        <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+          <input
+            id="version"
+            name="version"
+            placeholder="Product Version"
+            class="form-control search-slt"
+          />
+        </div>
+        <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+          <select name="country" id="country" class="form-control search-slt">
+            <option value="US">US</option>
+            <option value="AU">AU</option>
+            <option value="BR">BR</option>
+            <option value="CA">CA</option>
+            <option value="CN">CN</option>
+            <option value="FR">FR</option>
+            <option value="DE">DE</option>
+            <option value="IN">IN</option>
+            <option value="IT">IT</option>
+            <option value="MX">MX</option>
+            <option value="NL">NL</option>
+            <option value="SG">SG</option>
+            <option value="ES">ES</option>
+            <option value="TR">TR</option>
+            <option value="AE">AE</option>
+            <option value="GB">GB</option>
+            <option value="JP">JP</option>
+          </select>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+        <button class="btn btn-danger wrn-btn">Search By Keyword</button>
+      </div>
     </div>
-    </form>
-    </div>
+  </form>
+</div>
 
-
-
-    <div id="result">
-
-    </div>
-    
-
+<div id="result"></div>
 
 {%endblock%}

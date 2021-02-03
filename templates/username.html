@@ -1,132 +1,92 @@
-
-{%extends 'base.html'%}
-
-{%block content%}
+{%extends 'base.html'%} {%block content%}
 
 <div class="center abox"></div>
-
-
 
 {%if 'username' in session %}
 
 <div class="container">
-<div class="row">
-<div class="col-6">
-
-   
-        <img src="{{profile_img}}" alt="user photo here" class="profile_img">
-        <h1>Awesome! You are {{ user.username }}!</h1>
-
-</div>
-
-<div class="col-6">
-    <div class="container">
-    <a  class="btn btn-primary btn-sm col-3" href="/logout">Log Out</a>
+  <div class="row">
+    <div class="col-6">
+      <img src="{{profile_img}}" alt="user photo here" class="profile_img" />
+      <h1>Awesome! You are {{ user.username }}!</h1>
     </div>
 
-    <hr style="visibility: hidden;">
-    
-    <div class="container">
-    <form>
-        <button class="btn btn-danger btn-sm col-3"
-                formaction="/users/{{ user.username }}/delete"
-                formmethod="POST">
-          Delete User
-        </button>
-    
-      </form>
+    <div class="col-6">
+      <div class="container">
+        <a class="btn btn-primary btn-sm col-3" href="/logout">Log Out</a>
       </div>
-     
+
+      <hr style="visibility: hidden" />
+
+      <div class="container">
+        <form>
+          <button
+            class="btn btn-danger btn-sm col-3"
+            formaction="/users/{{ user.username }}/delete"
+            formmethod="POST"
+          >
+            Delete User
+          </button>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 
+  <hr />
 
-
-
-
-
-
-
-<hr>
-
-<div>
-
-
-
-<div class="list-group">
-    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+  <div>
+    <div class="list-group">
+      <button
+        type="button"
+        class="list-group-item list-group-item-action active"
+        aria-current="true"
+      >
         Your shopping lists:
-    </button>
-    {% for list in lists %}
-    <button type="button" class="list-group-item list-group-item-action">
-        {% if list.done %} <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{% endif %}
-  
-    </button>
-    {% endfor %}
+      </button>
+      {% for list in lists %}
+      <button type="button" class="list-group-item list-group-item-action">
+        {% if list.done %}
+        <strike> {% endif %}{{ list.content }} {% if list.done %} </strike>{%
+        endif %}
+      </button>
+      {% endfor %}
+    </div>
+
+    <hr />
+
+    <div class="container">
+      <div class="row">
+        <div class="col-6 list-group">
+          <a href="#" class="list-group-item list-group-item-action active">
+            You loved Asin:
+          </a>
+          {%for fav in userfav %} {%if fav.fav %}
+
+          <a href="#" class="list-group-item list-group-item-action">
+            <small><img src="../static/love.png" class="lovehate" /></small
+            >{{fav.asin}}</a
+          >
+
+          {%endif%} {%endfor%}
+        </div>
+
+        <div class="col-6">
+          <a href="#" class="list-group-item list-group-item-action active">
+            You hated Asin:
+          </a>
+
+          {%for fav in userfav %} {%if fav.fav == False %}
+
+          <a href="#" class="list-group-item list-group-item-action"
+            ><small><img src="../static/hate.png" class="lovehate" /></small>
+            {{fav.asin}}</a
+          >
+          {%endif%} {%endfor%}
+        </div>
+      </div>
+    </div>
   </div>
-
-  <hr>
-
-  
-  <div class="container">
-   <div class="row">
-
-  <div class="col-6 list-group">
-
-    <a href="#" class="list-group-item list-group-item-action active">
-        You loved Asin:
-      </a>
-  {%for fav in userfav %}
-   {%if fav.fav %}
-
-
-   <a href="#" class="list-group-item list-group-item-action">   <small><img src="../static/love.png" class="lovehate"></small>{{fav.asin}}</a>
-  
-  {%endif%}
-  {%endfor%}
-
-
-
-
-
-
-
-
-  </div>
-
-  <div class="col-6">
-    <a href="#" class="list-group-item list-group-item-action active">
-        You hated Asin:
-      </a>
-
-
-  {%for fav in userfav %}
-  {%if fav.fav == False %}
- 
-
-  <a href="#" class="list-group-item list-group-item-action"><small><img src="../static/hate.png" class="lovehate"></small> {{fav.asin}}</a>
- {%endif%}
- {%endfor%}
- </div>
- </div>
-
- </div>
-
 </div>
 
-</div>
-
-
-
-{%endif%}
-
-{%if 'username' not in session%}
-
-You must log in to see it. 
-
-{%endif%}
-
-
-
-
+{%endif%} {%if 'username' not in session%} You must log in to see it. {%endif%}
 {%endblock%}

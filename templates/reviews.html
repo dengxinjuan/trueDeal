@@ -1,66 +1,53 @@
-{%extends 'base.html'%}
-
-{%block content%}
+{%extends 'base.html'%} {%block content%}
 
 <div class="center abox"></div>
 
-<div class="container bbox" id="reviews_by_asin" style="display: block;" >
-<h1>Reviews-By-Asin</h1>
-<hr>
+<div class="container bbox" id="reviews_by_asin" style="display: block">
+  <h1>Reviews-By-Asin</h1>
+  <hr />
 
-<form  method="POST" >
-  <div class="row">
-    {{form.hidden_tag()}}
-    {% for field in form 
-    if field.widget.input_type != 'hidden' %}
-    
-  <div class="col-lg-3 col-md-2 col-sm-12 p-0">
-        {{field.label}} 
-        {{field(class_="form-control search-slt")}}
-        {% for error in field.errors %}
-        {{error}}
-        {% endfor %}
+  <form method="POST">
+    <div class="row">
+      {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
+      'hidden' %}
+
+      <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+        {{field.label}} {{field(class_="form-control search-slt")}} {% for error
+        in field.errors %} {{error}} {% endfor %}
+      </div>
+      {%endfor%}
+
+      <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+        <button
+          type="submit"
+          class="btn btn-danger wrn-btn"
+          style="margin-top: 1.45rem"
+          id="reviewbtn"
+        >
+          Reviews-By-ASIN
+        </button>
+      </div>
     </div>
-    {%endfor%}
+  </form>
+</div>
 
-    <div class="col-lg-3 col-md-2 col-sm-12 p-0">
-    <button type="submit" class="btn btn-danger wrn-btn" style="margin-top: 1.45rem;" id="reviewbtn">Reviews-By-ASIN</button>
+<div>
+  {%if result%} {%for item in result%}
+
+  <div
+    class="jumbotron jumbotron-fluid"
+    style="background-color: azure; z-index: 10"
+  >
+    <div class="container">
+      <h1 class="display-4">{{item.title}}</h1>
+      <p>{{item.review}}</p>
+      <p>{{item.rating}}</p>
+      <p>{{item.name}}</p>
+      <p>{{item['date']['date']}}</p>
+    </div>
   </div>
 
-  </div>
-    </form>
-    </div>
+  {%endfor%}
+</div>
 
-    
-    <div>
-
-
-        {%if result%}
-        {%for item in result%} 
-
-
-        <div class="jumbotron jumbotron-fluid" style="background-color: azure; z-index: 10;">
-            <div class="container">
-              <h1 class="display-4">{{item.title}}</h1>
-              <p>{{item.review}}</p>
-              <p>{{item.rating}}</p>
-              <p>{{item.name}}</p>
-              <p>{{item['date']['date']}}</p>
-            </div>
-          </div>
-    
-    
-        
-    
-        {%endfor%}
-      
-    </div>
-
-
-
-
-
-    {%endif%}  
-
-
-{%endblock%}
+{%endif%} {%endblock%}
