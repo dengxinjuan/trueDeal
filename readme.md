@@ -1,14 +1,18 @@
 #TrueDeal Project
 
+##About
+
+It is a project which will return real product information from amazon. User can create shopping list and can add fav/hate to the database.
+
 ##Deployment at heroku link
+This project is deployed by heroku. You can click the link below to open it:
 
 https://true-deal-2021.herokuapp.com/
 
 
 
-
-
 ##Goal
+(It is a capstone one project for full stack webdevelopment.)
 
 ###Return price/description/reviews
 
@@ -17,9 +21,14 @@ https://true-deal-2021.herokuapp.com/
 - record users favotite items, and hated items.
 
 
-##Sample User
-- username: cat
-- password: cat
+##Table of Content
+- Home: return product by search term
+- Search-by-Asin: return result by product asin
+- Review-By-Asin: return reviews by product asin
+- Shopping-list: load users' shopping list
+- profile: show user's profile
+- login/logout
+
 
 
 ##User Persona
@@ -45,14 +54,27 @@ All ages.
 
 - user can log in to view their shoppinglists, and save favorite, hate, and seach itesms.
 
-##Coding Languages
+##Technologies Used
 
-- HTML, CSS, JAVASCRIPT, PYTHON, SQL,SQLACHLMY, FLASK, FLASK-FORM and more
+- HTML
+- CSS
+- Bootstrap
+- Font-awesome
+- Google fonts
+- JAVASCRIPT
+-  PYTHON
+-  SQL
+-  SQLACHLMY
+-  FLASK
+-  FLASK-FORM 
+-  Github
+-  and more
 
 ##UI
 - The theme is more coloful, and childish stylish.
-- google fonts
-- color story: purple, blue, white, green
+- google fonts: Fraunces
+- color story: 
+  purple rgb(161, 116, 204), blue(0,0,255), white, green
 
 
 ## API
