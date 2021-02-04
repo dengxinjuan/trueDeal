@@ -1,19 +1,32 @@
 {%extends 'base.html'%} {%block content%}
 
-<div>
-  {%if result%} {%for item in result%}
+<div class="container">
+  <div class="row">
+    {%if result%} {%for item in result%}
 
-  <div class="jumbotron jumbotron-fluid result">
-    <div class="container">
-      <h1 class="display-4">{{item.title}}</h1>
-      <p>{{item.review}}</p>
-      <p>{{item.rating}}</p>
-      <p>{{item.name}}</p>
-      <p>{{item['date']['date']}}</p>
+    <div class="card col-sm-4">
+      <div class="card-header border-primary">
+        Rating: {{item.rating}}
+        <img
+          src="../static/5-stars/{{item.rating}}.png"
+          style="height: 40px"
+          ;
+        />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{item.title}}</h5>
+        <div class="card-text">
+          <i class="fas fa-comment-dots"></i>{{item.review}}
+        </div>
+        <div class="card-text"><i class="fas fa-user"></i> {{item.name}}</div>
+        <div class="card-text">
+          <i class="far fa-clock"></i> <small>{{item['date']['date']}}</small>
+        </div>
+      </div>
     </div>
-  </div>
 
-  {%endfor%}
+    {%endfor%}
+  </div>
 </div>
 {%else%}
 <h1>Try Again! There is no result!</h1>
