@@ -32,9 +32,11 @@ connect_db(app)
 db.create_all()
 
 
-# function to search
+# api key
 key = os.getenv("AMAZON_REQUEST_KEY")
 
+
+# function to search
 
 def request_amazon(amazonkeyword, country):
     """this will return json for the product keyword"""
@@ -189,7 +191,7 @@ def product_by_asin(asin, country):
     querystring = {f"asin": {asin}, "country": {country}}
 
     headers = {
-        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
+        'x-rapidapi-key': os.environ.get('AMAZON_REQUEST_KEY', key),
         'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
     }
 
@@ -225,7 +227,7 @@ def search_reviews(asin, country):
         country}, "variants": "1", "top": "0"}
 
     headers = {
-        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
+        'x-rapidapi-key': os.environ.get('AMAZON_REQUEST_KEY', key),
         'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
     }
 
