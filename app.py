@@ -31,6 +31,7 @@ connect_db(app)
 # create table
 db.create_all()
 
+
 # function to search
 
 
@@ -43,8 +44,8 @@ def request_amazon(amazonkeyword, country):
                    "country": {country}, "category": "aps"}
 
     headers = {
-        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
-        'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
+        'x-rapidapi-key': os.getenv("AMAZON_REQUEST_KEY"),
+        'x-rapidapi-host': os.getenv("AMAZON_REQUEST_API")
     }
 
     response = requests.request(
@@ -52,48 +53,6 @@ def request_amazon(amazonkeyword, country):
     result = json.loads(response.text)
 
     return result['products']
-
-
-def request_target(targetkeyword):
-    """this will return json for the product keyword"""
-
-    """targetApi"""
-    url = "https://target-com-store-product-reviews-locations-data.p.rapidapi.com/product/search"
-
-    querystring = {f"store_id": "3991", "keyword": {
-        targetkeyword}, "sponsored": "1", "limit": "50", "offset": "0"}
-
-    headers = {
-        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
-        'x-rapidapi-host': "target-com-store-product-reviews-locations-data.p.rapidapi.com"
-    }
-
-    response = requests.request(
-        "GET", url, headers=headers, params=querystring)
-
-    result = response.text
-
-    return result
-
-
-def request_walmart(walmartkeyword):
-    """get walmart json information"""
-
-    url = "https://search-walmart.p.rapidapi.com/"
-
-    querystring = {f"name": {walmartkeyword}}
-
-    headers = {
-        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
-        'x-rapidapi-host': "search-walmart.p.rapidapi.com"
-    }
-
-    response = requests.request(
-        "GET", url, headers=headers, params=querystring)
-
-    result = response.text
-
-    return result
 
 
 ##########
@@ -116,10 +75,6 @@ def search_result():
     searchterm = brand+productname+version
     result = request_amazon(searchterm, country)
 
-    #username = session['username']
-
-    #walmartresult =request_walmart(searchterm)
-    # targetresult=request_target(searchterm)
     return render_template('search.html', result=result, len=len(result))
 
 
@@ -233,8 +188,8 @@ def product_by_asin(asin, country):
     querystring = {f"asin": {asin}, "country": {country}}
 
     headers = {
-        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
-        'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
+        'x-rapidapi-key': os.getenv("PRODUCT_ASIN_KEY"),
+        'x-rapidapi-host': os.getenv("PRODUCT_SEARCH_API")
     }
 
     response = requests.request(
@@ -269,8 +224,8 @@ def search_reviews(asin, country):
         country}, "variants": "1", "top": "0"}
 
     headers = {
-        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
-        'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
+        'x-rapidapi-key': os.getenv("REVIEW_ASIN_KEY"),
+        'x-rapidapi-host': os.getenv("REVIEW_ASIN_API")
     }
 
     response = requests.request(
