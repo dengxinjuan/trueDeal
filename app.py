@@ -44,7 +44,7 @@ def request_amazon(amazonkeyword, country):
                    "country": {country}, "category": "aps"}
 
     headers = {
-        'x-rapidapi-key': os.getenv("AMAZON_REQUEST_KEY"),
+        'x-rapidapi-key': os.environ.get("AMAZON_REQUEST_KEY"),
         'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
     }
 
