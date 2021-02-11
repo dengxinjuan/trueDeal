@@ -188,8 +188,8 @@ def product_by_asin(asin, country):
     querystring = {f"asin": {asin}, "country": {country}}
 
     headers = {
-        'x-rapidapi-key': os.getenv("PRODUCT_ASIN_KEY"),
-        'x-rapidapi-host': os.getenv("PRODUCT_SEARCH_API")
+        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
+        'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
     }
 
     response = requests.request(
@@ -224,8 +224,8 @@ def search_reviews(asin, country):
         country}, "variants": "1", "top": "0"}
 
     headers = {
-        'x-rapidapi-key': os.getenv("REVIEW_ASIN_KEY"),
-        'x-rapidapi-host': os.getenv("REVIEW_ASIN_API")
+        'x-rapidapi-key': "e6001d6072msh1f868436da26ed9p1ce5c5jsnb7b3847e24ce",
+        'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
     }
 
     response = requests.request(
