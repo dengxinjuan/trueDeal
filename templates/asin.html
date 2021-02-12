@@ -19,7 +19,7 @@
 {% for field in form 
 if field.widget.input_type != 'hidden' %}
 
-<div class="col-lg-3 col-md-2 col-sm-12 p-0">
+<div class="col-md-6 mb-3">
     {{field.label}} 
     {{field(class_="form-control search-slt")}}
     {% for error in field.errors %}
@@ -28,8 +28,8 @@ if field.widget.input_type != 'hidden' %}
 </div>
 {%endfor%}
 
-<div class="col-lg-3 col-md-2 col-sm-12 p-0">
-<button type="submit" class="btn btn-danger wrn-btn" style="margin-top: 1.45rem;">Search-By-ASIN</button>
+<div class="form-row">
+<button type="submit" class="col btn btn-danger wrn-btn mt-3" >Search-By-ASIN</button>
 </div>
 
 </div>

@@ -11,7 +11,7 @@
   <form action="/search" id="search-form">
     <div class="col-lg-12">
       <div class="row">
-        <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+        <div class="col-md-4 mt-2 md-2">
           <input
             id="brand"
             type="text"
@@ -20,11 +20,8 @@
             class="form-control search-slt"
           />
         </div>
-        <div class="col-lg-3 col-md-2 col-sm-12 p-0">
-          <input type="text id="productname" placeholder="Product Name"
-          name="productname" class="form-control search-slt" required>
-        </div>
-        <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+
+        <div class="col-md-4 mt-2 md-2">
           <input
             id="version"
             name="version"
@@ -32,7 +29,7 @@
             class="form-control search-slt"
           />
         </div>
-        <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+        <div class="col-md-4 mt-2 md-2">
           <select name="country" id="country" class="form-control search-slt">
             <option value="US">US</option>
             <option value="AU">AU</option>
@@ -55,9 +52,12 @@
         </div>
       </div>
 
-      <br />
+      <div class="col mt-2 md-2">
+        <input type="text id="productname" placeholder="Product Name"
+        name="productname" class="form-control search-slt" required>
+      </div>
 
-      <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+      <div class="col mt-2 md-2">
         <button class="btn btn-danger wrn-btn">Search By Keyword</button>
       </div>
     </div>

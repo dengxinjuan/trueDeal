@@ -11,17 +11,16 @@
       {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
       'hidden' %}
 
-      <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+      <div class="col-md-6 mb-3">
         {{field.label}} {{field(class_="form-control search-slt")}} {% for error
         in field.errors %} {{error}} {% endfor %}
       </div>
       {%endfor%}
 
-      <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+      <div class="form-row">
         <button
           type="submit"
-          class="btn btn-danger wrn-btn"
-          style="margin-top: 1.45rem"
+          class="btn btn-danger wrn-btn col mt-3"
           id="reviewbtn"
         >
           Reviews-By-ASIN
