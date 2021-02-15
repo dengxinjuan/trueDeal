@@ -70,7 +70,7 @@ https://true-deal-2021.herokuapp.com/
 
 ## UI
 
-- The theme is more coloful, and childish stylish.
+- The theme is more coloful, and childish stylish. Using minic, naive, fun colors.
 - google fonts: Fraunces
 - color story:
   purple rgb(161, 116, 204), blue(0,0,255), white, green
@@ -86,6 +86,12 @@ https://true-deal-2021.herokuapp.com/
 - Product Search (GET)
 - Product review ( GET)
 - Product description (GET)
+
+## Using bootstrap to responsive
+
+![responsive image here ](mockup/res1.png)
+![responsive image here ](mockup/res2.png)
+![responsive image here ](mockup/res3.png)
 
 ## Schema Design
 
