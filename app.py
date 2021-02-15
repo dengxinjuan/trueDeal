@@ -1,3 +1,5 @@
+
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify, redirect, flash, session, send_from_directory
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, ShoppingList, UserFav
@@ -32,7 +34,8 @@ connect_db(app)
 db.create_all()
 
 
-# api key
+# api key, hide the key in env
+load_dotenv()
 key = os.getenv("AMAZON_REQUEST_KEY")
 
 
