@@ -2,6 +2,8 @@
 
 ## About
 
+![showcase image here](mockup/showcase.png)
+
 It is a project which will return real product information from amazon. User can create shopping list and can add fav/hate to the database.
 
 ## Deployment at heroku link
