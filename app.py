@@ -1,5 +1,5 @@
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # use dotenv to hide the sensitive information
 from flask import Flask, render_template, request, jsonify, redirect, flash, session, send_from_directory
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, ShoppingList, UserFav
