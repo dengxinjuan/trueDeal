@@ -4,7 +4,8 @@
 
 ![showcase image here](mockup/showcase.png)
 
-It is a project which will return real product information from amazon. User can create shopping list and can add fav/hate to the database.
+It is a project which will return real product information from amazon.
+You can check amazon product price,search review by asin, read singel product info by asin. User can create shopping list and can add fav/hate to the database.
 
 ## Deployment at heroku link
 
