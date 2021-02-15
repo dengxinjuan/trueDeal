@@ -5,13 +5,13 @@
 It is a project which will return real product information from amazon. User can create shopping list and can add fav/hate to the database.
 
 ## Deployment at heroku link
+
 This project is deployed by heroku. You can click the link below to open it:
 
 https://true-deal-2021.herokuapp.com/
 
-
-
 ## Goal
+
 (It is a capstone one project for full stack webdevelopment.)
 
 ### Return price/description/reviews
@@ -20,8 +20,8 @@ https://true-deal-2021.herokuapp.com/
 - give users log in and let user creates their own shoppinglist.
 - record users favotite items, and hated items.
 
-
 ## Table of Content
+
 - Home: return product by search term
 - Search-by-Asin: return result by product asin
 - Review-By-Asin: return reviews by product asin
@@ -29,13 +29,11 @@ https://true-deal-2021.herokuapp.com/
 - profile: show user's profile
 - login/logout
 
-
-
 ## User Persona
- 
--  Basic everyday user who wants to know what price for product will qualify for true deal, otherwise it will be a fake promo.
-All ages. 
-- Location:  amazon/walmart user.
+
+- Basic everyday user who wants to know what price for product will qualify for true deal, otherwise it will be a fake promo.
+  All ages.
+- Location: amazon/walmart user.
 - User need: get the lowest price.
 
 ## Main functions
@@ -62,20 +60,20 @@ All ages.
 - Font-awesome
 - Google fonts
 - JAVASCRIPT
--  PYTHON
--  SQL
--  SQLACHLMY
--  FLASK
--  FLASK-FORM 
--  Github
--  and more
+- PYTHON
+- SQL
+- SQLACHLMY
+- FLASK
+- FLASK-FORM
+- Github
+- and more
 
 ## UI
+
 - The theme is more coloful, and childish stylish.
 - google fonts: Fraunces
-- color story: 
+- color story:
   purple rgb(161, 116, 204), blue(0,0,255), white, green
-
 
 ## API
 
@@ -89,7 +87,6 @@ All ages.
 - Product review ( GET)
 - Product description (GET)
 
-
 ## Schema Design
 
 - amazon: id-a, name, price, review, description
@@ -97,20 +94,20 @@ All ages.
 - user login : user_id, username,password,profile-img,shoppinglist
 - shopping list: id, content, done, username
 
-
-
 - relation table 1:
-user-amazon-favorite
+  user-amazon-favorite
 
 - relation-table 2:
-user-shopping-list
+  user-shopping-list
 
-![schema image here](./truedealschema.png)
+![schema image here](mockup/truedealschema.png)
 
 ## Simple Mockup
+
 # search by keyword
 
 ![mockup image here](mockup/1.png)
+
 # search result and you can go to amazon page, like it or hate it
 
 ![mockup image here](mockup/2.png)
@@ -122,6 +119,7 @@ user-shopping-list
 ![mockup image here](mockup/4.png)
 
 # review by asin
+
 ![mockup image here](mockup/5.png)
 
 ![mockup image here](mockup/6.png)
@@ -132,10 +130,8 @@ user-shopping-list
 
 ## user profile page
 
-
 ![mockup image here](mockup/8.png)
 
 ## user love or hate asin lists
 
 ![mockup image here](mockup/9.png)
-
