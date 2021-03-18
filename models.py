@@ -30,7 +30,7 @@ class User(db.Model):
 
     profile_img = db.Column(db.Text,
                             nullable=False,
-                            default='https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+                            default='./static/images/default.png'
                             )
 
     shoppinglist = db.relationship(

@@ -178,11 +178,19 @@ def delete_user(username):
 
 
 # error handle
-
+# when there is 404 when the api returning result is none
 @app.errorhandler(404)
 def page_not_found(e):
     """customize error page"""
     return render_template('404.html'), 404
+
+# when there is internal server error
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('500.html'), 500
 
 
 # seach by asin page
