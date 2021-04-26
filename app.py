@@ -223,8 +223,8 @@ def search_by_asin():
             country = form.country.data
             result = product_by_asin(asin_search_term, country)
             return render_template('asinresult.html', result=result)
-        except Exception as e:
-            raise InternalServerError
+        except:
+            return render_template('500.html')
 
     return render_template("asin.html", form=form)
 
