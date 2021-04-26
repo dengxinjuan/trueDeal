@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <!-- For loop logic of jinja template -->
-    {%for i in range(0, len)%}
+    {{country}} {%for i in range(0, len)%}
 
     <div class="card" style="width: 18rem; display: inline-block">
       <div class="card-img-top">
@@ -21,7 +21,10 @@
             {{result[i]['price']['currency']}}
           </li>
           <li class="list-group-item">
-            Asin: {{result[i]['asin']}} <button>Copy It!</button>
+            Asin: {{result[i]['asin']}}
+            <button>
+              <a href="/product?r={{ result[i]['asin']}}&c={{country}}">View</a>
+            </button>
           </li>
         </ul>
 
@@ -32,7 +35,7 @@
                 ><img src="../static/images/go.png" class="lovehate"
               /></a>
             </div>
-
+            {%if session['username']%}
             <div class="col-sm">
               <form action="/addfav/{{result[i]['asin']}}" method="POST">
                 <input
@@ -58,6 +61,7 @@
                 </button>
               </form>
             </div>
+            {%endif%}
           </div>
         </div>
       </div>
