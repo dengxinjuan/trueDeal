@@ -218,10 +218,13 @@ def search_by_asin():
     """search by asin"""
     form = AsinSearchForm()
     if form.validate_on_submit():
-        asin_search_term = form.ASIN.data
-        country = form.country.data
-        result = product_by_asin(asin_search_term, country)
-        return render_template('asinresult.html', result=result)
+        try:
+            asin_search_term = form.ASIN.data
+            country = form.country.data
+            result = product_by_asin(asin_search_term, country)
+            return render_template('asinresult.html', result=result)
+        except Exception as e:
+            raise InternalServerError
 
     return render_template("asin.html", form=form)
 
