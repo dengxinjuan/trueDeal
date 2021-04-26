@@ -79,3 +79,9 @@ h1 {
   height: calc(3rem + 2px) !important;
   border-radius: 0;
 }
+
+.cbox {
+  margin-top: 40%;
+  padding-top: 50px;
+  width: 300px;
+}
