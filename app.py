@@ -74,14 +74,16 @@ def home_page():
 @app.route('/search')
 def search_result():
     """redner search result"""
-    productname = request.args["productname"]
-    brand = request.args["brand"]
-    version = request.args["version"]
-    country = request.args["country"]
-    searchterm = brand+productname+version
-    result = request_amazon(searchterm, country)
-
-    return render_template('search.html', result=result, len=len(result), country=country)
+    try:
+        productname = request.args["productname"]
+        brand = request.args["brand"]
+        version = request.args["version"]
+        country = request.args["country"]
+        searchterm = brand+productname+version
+        result = request_amazon(searchterm, country)
+        return render_template('search.html', result=result, len=len(result), country=country)
+    except:
+        return render_template('500.html')
 
 
 ##########User ####
@@ -267,10 +269,13 @@ def reviews_by_asin():
     form = ReviewsByAsinForm()
 
     if form.validate_on_submit():
-        review_search_term = form.reviewsByAsin.data
-        country = form.country.data
-        result = search_reviews(review_search_term, country)
-        return render_template('reviewresult.html', result=result)
+        try:
+            review_search_term = form.reviewsByAsin.data
+            country = form.country.data
+            result = search_reviews(review_search_term, country)
+            return render_template('reviewresult.html', result=result)
+        except:
+            return render_template('500.html')
 
     return render_template('reviews.html', form=form)
 
