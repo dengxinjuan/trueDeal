@@ -144,3 +144,9 @@ https://true-deal-2021.herokuapp.com/
 ## user love or hate asin lists
 
 ![mockup image here](mockup/9.png)
+
+## handling errors
+
+when user enter a wrong asin, it will redirect to a error page.
+![mockup image here](mockup/error2.png)
+![mockup image here](mockup/error1.png)
