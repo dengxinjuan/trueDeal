@@ -230,17 +230,8 @@ def search_by_asin():
 
     return render_template("asin.html", form=form)
 
-
-@app.route("/product")
-def product_detail():
-    """display detail of the product"""
-    asin = request.args["r"]
-    country = request.args["c"]
-    result = product_by_asin(asin, country)
-    return render_template('asinresult.html', result=result)
-
-
 # search reviews by asin
+
 
 def search_reviews(asin, country):
     """get reviews by asin"""
@@ -261,6 +252,16 @@ def search_reviews(asin, country):
     result = json.loads(response.text)
 
     return result['reviews']
+
+
+@app.route("/product")
+def product_detail():
+    """display detail of the product"""
+    asin = request.args["r"]
+    country = request.args["c"]
+    result = product_by_asin(asin, country)
+    reviews = search_reviews(asin, country)
+    return render_template('product.html', result=result, reviews=reviews)
 
 
 @app.route("/reviews", methods=['GET', 'POST'])
