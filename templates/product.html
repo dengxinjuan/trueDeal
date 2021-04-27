@@ -1,0 +1,111 @@
+{%extends 'base.html'%} {%block content%}
+
+<div class="container" style="width: 100vw">
+  <div class="row">
+    <div class="col-lg-6">
+      {%if result %}
+
+      <div class="card mb-3" style="max-width: 1200px">
+        <div class="col-md-3">
+          <img src="{{result['main_image']}}" alt="product image here" />
+        </div>
+        <div class="row g-0" style="display: flex">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title">{{result['title']}}</h3>
+              <p class="card-text">
+                Customer Rating : {{result['reviews'].rating}}
+              </p>
+
+              {%if session['username']%}
+              <div class="col-sm">
+                <form action="/addfav/{{result['asin']}}" method="POST">
+                  <input type="hidden" name="asin" value="{{result['asin']}}" />
+                  <button class="btn">
+                    <img src="../static/images/love.png" class="lovehate" />
+                  </button>
+                  Love?
+                </form>
+              </div>
+
+              <div class="col-sm">
+                <form action="/removefav/{{result['asin']}}" method="POST">
+                  <input type="hidden" name="asin" value="{{result['asin']}}" />
+                  <button class="btn">
+                    <img src="../static/images/hate.png" class="lovehate" />
+                  </button>
+                  Hate?
+                </form>
+              </div>
+              {%endif%}
+              <p class="card-text">{{result['description']}}</p>
+              {%for item in result['feature_bullets']%}
+              <p class="card-text">{{item}}</p>
+              {%endfor%}
+
+              <a href="{{result['url']}}" class="btn btn-danger" target="_blank"
+                >Go!</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {%else%}
+
+      <h1>There is no result! Try Again!</h1>
+
+      <iframe
+        src="https://giphy.com/embed/1Bh3GRMCFtSd2L1c57"
+        width="480"
+        height="360"
+        frameborder="0"
+        class="giphy-embed"
+        allowfullscreen
+      ></iframe>
+      <p>
+        <a
+          href="https://giphy.com/gifs/hyperrpg-nightmare-gtfo-why-me-1Bh3GRMCFtSd2L1c57"
+          >via GIPHY</a
+        >
+      </p>
+
+      {%endif%}
+    </div>
+
+    <div class="col-lg-6">
+      <div class="container">
+        <div class="row">
+          {%if reviews%} {%for item in reviews%}
+
+          <div class="card col-sm-4">
+            <div class="card-header border-primary">
+              Rating: {{item.rating}}
+              <img
+                src="../static/images/5-stars/{{item.rating}}.png"
+                style="height: 40px"
+                ;
+              />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <div class="card-text">
+                <i class="fas fa-comment-dots"></i>{{item.review}}
+              </div>
+              <div class="card-text">
+                <i class="fas fa-user"></i> {{item.name}}
+              </div>
+              <div class="card-text">
+                <i class="far fa-clock"></i>
+                <small>{{item['date']['date']}}</small>
+              </div>
+            </div>
+          </div>
+
+          {%endfor%} {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

@@ -15,6 +15,9 @@
       <div class="col-md-8">
         <div class="card-body">
           <h3 class="card-title">{{result['title']}}</h3>
+          <p class="card-text">
+            Customer Rating : {{result['reviews'].rating}}
+          </p>
           <p class="card-text">{{result['description']}}</p>
           {%for item in result['feature_bullets']%}
           <p class="card-text">{{item}}</p>
