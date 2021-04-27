@@ -5,7 +5,7 @@
     {%for i in range(0, len)%}
 
     <div class="card" style="width: 18rem; display: inline-block">
-      <div class="card-img-top">
+      <div class="card-img-top" style="display: block">
         <img
           class="card-img-top"
           src="{{result[i]['thumbnail']}}"
@@ -14,7 +14,9 @@
         />
       </div>
       <div class="card-block">
-        <div class="card-title">{{result[i]['title']}}</div>
+        <div class="card-title" style="height: fit-content">
+          {{result[i]['title']}}
+        </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             Price: {{result[i]['price']['current_price']}}
@@ -30,7 +32,7 @@
 
         <div>
           <div class="row">
-            <div class="btn col-sm">
+            <div class="col-sm">
               <a href="{{result[i]['url']}}" target="_blank" class="btn"
                 ><img src="../static/images/go.png" class="lovehate"
               /></a>
