@@ -215,6 +215,25 @@ def product_by_asin(asin, country):
     return result['product']
 
 
+def by_asin(asin):
+    """return product details by asin"""
+
+    url = "https://amazon-product-reviews-keywords.p.rapidapi.com/product/details"
+    querystring = {f"asin": {asin}}
+
+    headers = {
+        'x-rapidapi-key': os.environ.get('AMAZON_REQUEST_KEY', key),
+        'x-rapidapi-host': "amazon-product-reviews-keywords.p.rapidapi.com"
+    }
+
+    response = requests.request(
+        "GET", url, headers=headers, params=querystring)
+
+    result = json.loads(response.text)
+
+    return result['product']
+
+
 @app.route("/asin", methods=['GET', 'POST'])
 def search_by_asin():
     """search by asin"""
@@ -222,8 +241,8 @@ def search_by_asin():
     if form.validate_on_submit():
         try:
             asin_search_term = form.ASIN.data
-            country = form.country.data
-            result = product_by_asin(asin_search_term, country)
+            #country = form.country.data
+            result = by_asin(asin_search_term)
             return render_template('asinresult.html', result=result)
         except:
             return render_template('500.html')
@@ -233,13 +252,12 @@ def search_by_asin():
 # search reviews by asin
 
 
-def search_reviews(asin, country):
+def search_reviews(asin):
     """get reviews by asin"""
 
     url = "https://amazon-product-reviews-keywords.p.rapidapi.com/product/reviews"
 
-    querystring = {f"asin": {asin}, "country": {
-        country}, "variants": "1", "top": "0"}
+    querystring = {f"asin": {asin}, "variants": "1", "top": "0"}
 
     headers = {
         'x-rapidapi-key': os.environ.get('AMAZON_REQUEST_KEY', key),
@@ -258,9 +276,9 @@ def search_reviews(asin, country):
 def product_detail():
     """display detail of the product"""
     asin = request.args["r"]
-    country = request.args["c"]
-    result = product_by_asin(asin, country)
-    reviews = search_reviews(asin, country)
+    #country = request.args["c"]
+    result = by_asin(asin)
+    reviews = search_reviews(asin)
     return render_template('product.html', result=result, reviews=reviews)
 
 
@@ -272,8 +290,8 @@ def reviews_by_asin():
     if form.validate_on_submit():
         try:
             review_search_term = form.reviewsByAsin.data
-            country = form.country.data
-            result = search_reviews(review_search_term, country)
+            #country = form.country.data
+            result = search_reviews(review_search_term)
             return render_template('reviewresult.html', result=result)
         except:
             return render_template('500.html')

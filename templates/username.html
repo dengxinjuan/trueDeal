@@ -62,7 +62,10 @@
           </a>
           {%for fav in userfav %} {%if fav.fav %}
 
-          <a href="#" class="list-group-item list-group-item-action">
+          <a
+            href="/product?r={{fav.asin}}"
+            class="list-group-item list-group-item-action"
+          >
             <small
               ><img src="../static/images/love.png" class="lovehate" /></small
             >{{fav.asin}}</a
@@ -78,7 +81,9 @@
 
           {%for fav in userfav %} {%if fav.fav == False %}
 
-          <a href="#" class="list-group-item list-group-item-action"
+          <a
+            href="/product?r={{fav.asin}}"
+            class="list-group-item list-group-item-action"
             ><small
               ><img src="../static/images/hate.png" class="lovehate"
             /></small>

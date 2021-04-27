@@ -28,12 +28,13 @@ class AsinSearchForm(FlaskForm):
         csrf = False
 
     ASIN = StringField("ASIN", validators=[InputRequired()])
+    """
     country = SelectField('country', choices=[
         ('US', 'US'), ('AU', 'AU'), ('BR', 'BR'), ('CA', 'CA'), ('CN',
                                                                  'CN'), ('FR', 'FR'), ('DE', 'DE'), ('IN', 'IN'), ('IT', 'IT'),
         ('MX', 'MX'), ('NL', 'NL'), ('SG', 'SG'), ('ES',
                                                    'ES'), ('TR', 'TR'), ('AE', 'AE'), ('GB', 'GB'), ('JP', 'JP')
-    ])
+    ])"""
 
 
 # The reviews by asin form
@@ -47,12 +48,12 @@ class ReviewsByAsinForm(FlaskForm):
     reviewsByAsin = StringField(
         "Reviews by Asin", validators=[InputRequired()])
 
-    country = SelectField('country', choices=[
+    """country = SelectField('country', choices=[
         ('US', 'US'), ('AU', 'AU'), ('BR', 'BR'), ('CA', 'CA'), ('CN',
                                                                  'CN'), ('FR', 'FR'), ('DE', 'DE'), ('IN', 'IN'), ('IT', 'IT'),
         ('MX', 'MX'), ('NL', 'NL'), ('SG', 'SG'), ('ES',
                                                    'ES'), ('TR', 'TR'), ('AE', 'AE'), ('GB', 'GB'), ('JP', 'JP')
-    ])
+    ])"""
 
 
 class ShoppingListForm(FlaskForm):

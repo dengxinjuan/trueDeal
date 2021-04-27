@@ -11,9 +11,9 @@
       {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
       'hidden' %}
 
-      <div class="col-md-6 mb-3">
-        {{field.label}} {{field(class_="form-control search-slt")}} {% for error
-        in field.errors %} {{error}} {% endfor %}
+      <div class="col-md-12 mb-3">
+        {{field(class_="form-control search-slt")}} {% for error in field.errors
+        %} {{error}} {% endfor %}
       </div>
       {%endfor%}
 
