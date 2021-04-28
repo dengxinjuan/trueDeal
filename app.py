@@ -321,7 +321,7 @@ def new_shopping_list(username):
         db.session.add(shoppinglist)
         db.session.commit()
 
-        return redirect(f"/users/{username}")
+        return redirect(f"/users/{shoppinglist.username}/shoppinglist/add")
 
     else:
         lists = ShoppingList.query.filter_by(username=username)
@@ -335,7 +335,7 @@ def delete_shopping_list(shoppinglist_id):
     db.session.delete(shoppinglist)
     db.session.commit()
 
-    return redirect(f"/users/{shoppinglist.username}")
+    return redirect(f"/users/{shoppinglist.username}/shoppinglist/add")
 
 
 @app.route("/shoppinglist/<int:shoppinglist_id>/done")
@@ -349,7 +349,7 @@ def done_shoppinglist(shoppinglist_id):
     else:
         shoppinglist.done = True
     db.session.commit()
-    return redirect(f"/users/{shoppinglist.username}")
+    return redirect(f"/users/{shoppinglist.username}/shoppinglist/add")
 
 
 # fix favicon error
