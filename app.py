@@ -242,6 +242,7 @@ def search_by_asin():
         try:
             asin_search_term = form.ASIN.data
             #country = form.country.data
+            asin_search_term = asin_search_term.replace(" ", "")
             result = by_asin(asin_search_term)
             return render_template('asinresult.html', result=result)
         except:
@@ -291,6 +292,7 @@ def reviews_by_asin():
         try:
             review_search_term = form.reviewsByAsin.data
             #country = form.country.data
+            review_search_term = review_search_term.replace(" ", "")
             result = search_reviews(review_search_term)
             return render_template('reviewresult.html', result=result)
         except:
@@ -380,6 +382,20 @@ def remove_fav(asin):
     username = session['username']
     hate = UserFav(username=username, asin=asin, fav=False)
     db.session.add(hate)
+    db.session.commit()
+
+    return redirect(f"/users/{username}")
+
+
+# test delete the asin fav
+
+@app.route("/remove/<asin>", methods=["POST"])
+def delete(asin):
+    """delete fav by asin """
+    username = session['username']
+    shoppinglist = UserFav.query.filter_by(
+        username=username, asin=asin).first()
+    db.session.delete(shoppinglist)
     db.session.commit()
 
     return redirect(f"/users/{username}")

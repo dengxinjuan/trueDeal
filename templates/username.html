@@ -70,6 +70,15 @@
               ><img src="../static/images/love.png" class="lovehate" /></small
             >{{fav.asin}}</a
           >
+          <form class="list-group-item">
+            <button
+              class="btn-sm btn-danger"
+              formaction="/remove/{{fav.asin}}"
+              formmethod="POST"
+            >
+              Delete
+            </button>
+          </form>
 
           {%endif%} {%endfor%}
         </div>
@@ -89,6 +98,15 @@
             /></small>
             {{fav.asin}}</a
           >
+          <form class="list-group-item">
+            <button
+              class="btn-sm btn-danger"
+              formaction="/remove/{{fav.asin}}"
+              formmethod="POST"
+            >
+              Delete
+            </button>
+          </form>
           {%endif%} {%endfor%}
         </div>
       </div>
